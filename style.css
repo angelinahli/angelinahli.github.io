@@ -75,6 +75,14 @@ p {
     background-color: #765D85 !important;
 }
 
+.bg-cs234 {
+    background-color: #702632 !important;
+}
+
+.bg-cs304 {
+    background-color: #345995 !important;
+}
+
 .bg-dark {
     color: white;
     background-color: #222222 !important;
@@ -86,6 +94,14 @@ p {
 
 .text-primary {
     color: #765D85;
+}
+
+.text-cs234 {
+    color: #702632;
+}
+
+.text-cs304 {
+    color: #345995;
 }
 
 .text-light {
