@@ -125,13 +125,8 @@ p {
     color: #C8BECE;
 }
 
-.text-homepage-name {
-    font-size: 60px;
-    /*font-family: 'PT Sans', 'Open Sans', 'Helvetica Neue', Arial, serif;*/
-    font-weight: bold;
-    letter-spacing: -1px;
-    color: #9F8DA9;
-    line-height: 1.2;
+.text-homepage {
+    font-weight: 20;
 }
 
 section {
