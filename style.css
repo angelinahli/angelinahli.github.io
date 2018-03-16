@@ -26,7 +26,7 @@ html {
 }
 
 body {
-    font-family: 'Open Sans', 'Helvetica Neue', Arial, sans-serif;
+    font-family: 'Helvetica Neue', 'Open Sans', Arial, sans-serif;
 }
 
 hr {
@@ -61,26 +61,39 @@ h3,
 h4,
 h5,
 h6 {
-    font-family: 'Open Sans', 'Helvetica Neue', Arial, sans-serif;
+    /*font-family: 'Open Sans', 'Helvetica Neue', Arial, sans-serif;*/
     line-height: 1.5;
 }
 
 p {
-    font-size: 17px;
+    font-size: 16px;
     line-height: 1.5;
     margin-bottom: 20px;
 }
 
+.lead {
+    font-size: 20px;
+}
+
+.display-4 {
+    font-size: 50px;
+}
+
 .bg-primary {
+    /* use class specific backgrounds for class purposes */
     background-color: #765D85 !important;
 }
 
 .bg-cs234 {
+    /* warm maroon/red */
+    color: white;
     background-color: #702632 !important;
 }
 
 .bg-cs304 {
-    background-color: #345995 !important;
+    /* dark slate grey/blue */
+    color: white;
+    background-color: #225560 !important;
 }
 
 .bg-dark {
@@ -114,7 +127,7 @@ p {
 
 .text-homepage-name {
     font-size: 60px;
-    font-family: 'PT Sans', 'Open Sans', 'Helvetica Neue', Arial, serif;
+    /*font-family: 'PT Sans', 'Open Sans', 'Helvetica Neue', Arial, serif;*/
     font-weight: bold;
     letter-spacing: -1px;
     color: #9F8DA9;
@@ -183,6 +196,13 @@ body {
     color: #222222;
 }
 
+#mainNav .dropdown-menu {
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: white;
+}
+
 #mainNav .navbar-nav>li.nav-item>a.nav-link:focus,
 #mainNav .navbar-nav>li.nav-item>a.nav-link {
     font-size: 13px;
@@ -206,6 +226,7 @@ body {
 #mainNav .navbar-nav>li.nav-item>a.nav-link.active:hover {
     background-color: transparent;
 }
+
 
 @media (min-width: 992px) {
     #mainNav {
@@ -271,16 +292,17 @@ header.masthead .header-content {
 }
 
 header.masthead .header-content .header-content-inner h1 {
-    font-size: 30px;
-    font-family: 'PT Sans', 'Open Sans', 'Helvetica Neue', Arial, serif;
-    font-weight: 700;
+    font-size: 60px;
+    /*font-family: 'PT Sans', 'Open Sans', 'Helvetica Neue', Arial, serif;*/
+    font-weight: 500;
     margin-top: 0;
     margin-bottom: 0;
-    text-transform: uppercase;
+    text-transform: lowercase;
 }
 
 header.masthead .header-content .header-content-inner hr {
     margin: 30px auto;
+    opacity: 0;
 }
 
 header.masthead .header-content .header-content-inner p {
@@ -300,6 +322,7 @@ header.masthead .header-content .header-content-inner span {
         height: 100%;
         min-height: 600px;
     }
+
     header.masthead .header-content {
         position: absolute;
         top: 50%;
@@ -308,14 +331,13 @@ header.masthead .header-content .header-content-inner span {
         -ms-transform: translateY(-50%);
         transform: translateY(-50%);
     }
+
     header.masthead .header-content .header-content-inner {
         max-width: 1000px;
         margin-right: auto;
         margin-left: auto;
     }
-    header.masthead .header-content .header-content-inner h1 {
-        font-size: 50px;
-    }
+    
     header.masthead .header-content .header-content-inner p {
         font-size: 18px;
         max-width: 80%;
@@ -372,7 +394,7 @@ header.masthead .header-content .header-content-inner span {
 .portfolio-box .portfolio-box-caption .portfolio-box-caption-content .project-category,
 .portfolio-box .portfolio-box-caption .portfolio-box-caption-content .project-name {
     padding: 0 15px;
-    font-family: 'Open Sans', 'Helvetica Neue', Arial, sans-serif;
+    /*font-family: 'Open Sans', 'Helvetica Neue', Arial, sans-serif;*/
 }
 
 .portfolio-box .portfolio-box-caption .portfolio-box-caption-content .project-category {
@@ -554,7 +576,7 @@ fieldset[disabled] .btn-primary:hover {
     text-transform: uppercase;
     border: none;
     border-radius: 300px;
-    font-family: 'Open Sans', 'Helvetica Neue', Arial, sans-serif;
+    /*font-family: 'Open Sans', 'Helvetica Neue', Arial, sans-serif;*/
 }
 
 .btn-xl {

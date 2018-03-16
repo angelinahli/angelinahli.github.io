@@ -81,8 +81,6 @@
         <div class="header-content">
             <div class="header-content-inner">
                 <h1 id="homeHeading"><span>Digital Natives - Summary</span></h1>
-                <hr>
-                <h5><span>A machine-learning driven exploration of online speech patterns. Here is the <a href="blog.html">project blog</a>.</span></h5>
             </div>
         </div>
     </header>
@@ -91,9 +89,11 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-8 mx-auto text-white">
-                    <div class="text-center"><i class="fa fa-4x fa-book sr-iconas"></i></div>
-                    <h2 class="section-heading text-center">Abstract</h2>
+                    <!-- <div class="text-center"><i class="fa fa-4x fa-book sr-iconas"></i></div> -->
+                    <h2 class="display-4 text-center">Abstract</h2>
                     <hr class="light">
+
+                    <p class="lead">This project is a machine-learning driven exploration of online speech patterns. Here is the <a href="blog.html">project blog</a>.</p>
 
                     <p>How do I, and others, communicate online on different media platforms? In this research investigation, I thoroughly investigate my communication through Facebook Messenger and GMail. I uncover several phenomena regarding my use of language online:</p>
 
@@ -114,8 +114,8 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-8 mx-auto">
-                    <div class="text-center"><i class="fa fa-4x fa-address-book sr-iconas"></i></div>
-                    <h2 class="section-heading text-center">Introduction</h2>
+                    <!-- <div class="text-center"><i class="fa fa-4x fa-address-book sr-iconas"></i></div> -->
+                    <h2 class="display-4 text-center">Introduction</h2>
                     <hr class="dark">
 
                     <p>How do we talk to each other online, as digital natives? How do we communicate differently across different media platforms, and to different people? Unfortunately, there is very little academic literature published on the ways in which we communicate online. While there is <a href="https://www.researchgate.net/profile/Bei_Yu2/publication/236246670_Classifying_Business_Marketing_Messages_on_Facebook/links/56bcb34408ae6cc737c6335b.pdf">some</a> <a href="http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.1001.5025&rep=rep1&type=pdf">research</a> discussing the use of Facebook Messenger to further business motivations, very few people have seriously investigated how we communicate in our personal lives on Facebook and other media platforms.</p>
@@ -150,9 +150,9 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-8 mx-auto text-center text-white">
-                    <div class="text-center"><i class="fa fa-4x fa-pencil-square-o sr-iconas"></i></div>
+                    <!-- <div class="text-center"><i class="fa fa-4x fa-pencil-square-o sr-iconas"></i></div> -->
 
-                    <h2 class="section-heading text-center">Methodology</h2>
+                    <h2 class="display-4 text-center">Methodology</h2>
                     <hr class="light">
 
                     <p>The bulk of this project will comprise of creating Multinomial Naive Bayes classifiers, in order to classify text as belonging to different categories. There are two core assumptions we make when using a Naive Bayes classifier: First, that the order of words in a corpus of text doesn't matter (the 'bag of words' assumption), and second, that the words that appear in any given fragment of text are independent from each other.</p>
@@ -220,11 +220,11 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-8 mx-auto text-center">
-                    <div class="text-center"><i class="fa fa-4x fa-area-chart sr-iconas"></i></div>
-                    <h2 class="section-heading text-center">Results and Analysis</h2>
+                    <!-- <div class="text-center"><i class="fa fa-4x fa-area-chart sr-iconas"></i></div> -->
+                    <h2 class="display-4 text-center">Results and Analysis</h2>
                     <hr class="dark">
 
-                    <h4>What words do I use that differentiate myself the greatest from my friends over Facebook Messenger?</h5>
+                    <h4>What words do I use that differentiate myself the greatest from my friends over Facebook Messenger?</h4>
 
                     <p>The classifier I created ultimately had an accuracy rate of 66.44%, as run on the entire population of messages I've ever sent to or received from anyone on Facebook.</p>
 
@@ -308,9 +308,9 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-8 mx-auto text-white text-center">
-                    <div class="text-center"><i class="fa fa-4x fa-newspaper-o sr-iconas"></i></div>
+                    <!-- <div class="text-center"><i class="fa fa-4x fa-newspaper-o sr-iconas"></i></div> -->
 
-                    <h2 class="section-heading text-center">Conclusion</h2>
+                    <h2 class="display-4 text-center">Conclusion</h2>
                     <hr class="light">
 
                     <p>One of my basic takeaways from this project was that the Multinomial Naive Bayes Classifier performs relatively poorly in the context of Facebook Messenger based text based analysis. Even after all of the ways I attempted to troubleshoot my model, the highest accuracy I achieved in classifying my messages based on whether or not I sent them was only 66.444% - still barely better than average. This exposes some of the real limitations of Naive Bayes Classifiers - perhaps one conclusion might be that a more sophisticated model than a "Bag of Words" construct might be needed to investigate the subtler differences in the ways we communicate online.</p>
