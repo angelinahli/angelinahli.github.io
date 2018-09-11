@@ -577,3 +577,7 @@ fieldset[disabled] .btn-primary:hover {
 .btn-xl {
     padding: 15px 30px;
 }
+
+.index-link {
+    font-weight: bold;
+}
