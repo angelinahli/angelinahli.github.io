@@ -414,7 +414,7 @@ function addSummaryChart() {
 
   plotlyLayout = {
     "font": { "family": "Helvetica Neue", "color": "#555555" },
-    "title": "Total Donations ($USD)",
+    "title": "Total Donations (USD)",
     "margin": { "l": 75, "r": 75, "b": 50, "t": 50 },
     "paper_bgcolor": "rgba(0,0,0,0)", 
     "plot_bgcolor": "rgba(0,0,0,0)",
