@@ -57,7 +57,7 @@ var GD = {
 };
 var GWR = {
   shortName: 'GWR',
-  name: 'GiveWell top charities',
+  name: 'GiveWell Top Charities',
   desc: 'Fund for GiveWell to redistribute to its top charities',
   href: 'http://www.givewell.org/'
 };
@@ -276,6 +276,12 @@ function getDateNumString(num) {
   return num < 10 ? "0" + num : num;
 }
 
+function getColWithChild(child) {
+  col = document.createElement("td");
+  col.appendChild(child);
+  return col;
+}
+
 function getDateCol(date) {
   yearString = date.getFullYear().toString();
   monthString = getDateNumString(date.getMonth() + 1);
@@ -294,29 +300,21 @@ function getOrgCol(org) {
   link = document.createElement("a")
   link.setAttribute("href", org.href)
   link.appendChild(span);
-
-  col = document.createElement("td");
-  col.appendChild(link);
-  return col;
+  return getColWithChild(link);
 }
 
 function getAmountCol(amount) {
   rightAlign = document.createElement("div");
   rightAlign.setAttribute("class", "text-right");
   rightAlign.innerHTML = getAmountString(amount);
-
-  col = document.createElement("td");
-  col.appendChild(rightAlign);
-  return col;
+  return getColWithChild(rightAlign);
 }
 
 function getNotesCol(notes) {
   text = notes == null ? "" : notes;
   small = document.createElement("small");
   small.innerHTML = text;
-  col = document.createElement("td");
-  col.appendChild(small);
-  return col;
+  return getColWithChild(small);
 }
 
 function getDetailedRow(rowData) {
