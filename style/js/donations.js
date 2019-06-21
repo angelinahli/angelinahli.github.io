@@ -89,180 +89,187 @@ var SI = {
 // data
 var donations = [
   {
-    date: new Date(2019, 1, 4),
+    date: getDate(2019, 1, 4),
     amount: 2000.0,
     organization:  SI
   },
   {
-    date: new Date(2019, 4, 18),
+    date: getDate(2019, 4, 18),
     amount: 15.0,
     organization: MC,
     notes: 'Birthday donation'
   },
   {
-    date: new Date(2018, 2, 22),
+    date: getDate(2018, 2, 22),
     amount: 60.0,
     organization: CIWF,
     notes: 'Birthday donation'
   },
   {
-    date: new Date(2018, 9, 21),
+    date: getDate(2018, 9, 21),
     amount: 20.0,
     organization: GD,
     notes: 'Birthday donation'
   },
   {
-    date: new Date(2018, 10, 2),
+    date: getDate(2018, 10, 2),
     amount: 20.0,
     organization: DTW,
     notes: 'Birthday donation'
   },
   {
-    date: new Date(2018, 10, 12),
+    date: getDate(2018, 10, 12),
     amount: 24.0,
     organization: AMF,
     notes: 'Birthday donation'
   },
   {
-    date: new Date(2018, 11, 27),
+    date: getDate(2018, 11, 27),
     amount: 20.0,
     organization: CEA,
     notes: 'Practice donations for Giving Tuesday donation drive'
   },
   {
-    date: new Date(2018, 11, 27),
+    date: getDate(2018, 11, 27),
     amount: 2499.0,
     organization: CEAAW,
     notes: 'Part of Giving Tuesday donation drive'
   },
   {
-    date: new Date(2018, 11, 27),
+    date: getDate(2018, 11, 27),
     amount: 2499.0,
     organization: ACEEAA,
     notes: 'Part of Giving Tuesday donation drive'
   },
   {
-    date: new Date(2017, 1, 3),
+    date: getDate(2017, 1, 3),
     amount: 12.0,
     organization: CEA 
   },
   {
-    date: new Date(2017, 11, 27),
+    date: getDate(2017, 11, 27),
     amount: 5.0,
     organization: MFA,
     notes: 'Practice donation for Giving Tuesday donation drive'
   },
   {
-    date: new Date(2017, 11, 28),
+    date: getDate(2017, 11, 28),
     amount: 1000.0,
     organization: ACE,
     notes: 'Part of Giving Tuesday donation drive'
   },
   {
-    date: new Date(2017, 11, 28),
+    date: getDate(2017, 11, 28),
     amount: 1000.0,
     organization: CEAAW,
     notes: 'Part of Giving Tuesday donation drive'
   },
   {
-    date: new Date(2017, 12, 1),
+    date: getDate(2017, 12, 1),
     amount: 10.0,
     organization: GD,
     notes: 'Birthday donation' 
   },
   {
-    date: new Date(2017, 12, 30),
+    date: getDate(2017, 12, 30),
     amount: 5000.0, /* 2 installments of 2500$ */
     organization: CEAAW
   },
   {
-    date: new Date(2017, 12, 31),
+    date: getDate(2017, 12, 31),
     amount: 1400.0, /* 1 installment of 750 + 1 installment of 650 */
     organization: ACEEAA
   },
   {
-    date: new Date(2016, 4, 3),
+    date: getDate(2016, 4, 3),
     amount: 100.0,
     organization: GWR
   },
   {
-    date: new Date(2016, 5, 14),
+    date: getDate(2016, 5, 14),
     amount: 10.0,
     organization: ACETC
   },
   {
-    date: new Date(2016, 6, 1),
+    date: getDate(2016, 6, 1),
     amount: 40.0,
     organization: CEA 
   },
   {
-    date: new Date(2016, 6, 1),
+    date: getDate(2016, 6, 1),
     amount: 60.0,
     organization: ACETC 
   },
   {
-    date: new Date(2016, 6, 1),
+    date: getDate(2016, 6, 1),
     amount: 100.0,
     organization: GWR 
   },
   {
-    date: new Date(2016, 6, 19),
+    date: getDate(2016, 6, 19),
     amount: 24.0,
     organization: GD,
   },
   {
-    date: new Date(2016, 6, 25),
+    date: getDate(2016, 6, 25),
     amount: 62.17,
     organization: GD
   },
   {
-    date: new Date(2016, 7, 4),
+    date: getDate(2016, 7, 4),
     amount: 100.0,
     organization: AMF
   },
   {
-    date: new Date(2016, 7, 15),
+    date: getDate(2016, 7, 15),
     amount: 100.0,
     organization: ACETC
   },
   {
-    date: new Date(2016, 7, 29),
+    date: getDate(2016, 7, 29),
     amount: 945.80,
     organization: AMF 
   },
   {
-    date: new Date(2016, 9, 1),
+    date: getDate(2016, 9, 1),
     amount: 40.0,
     organization: CEA 
   },
   {
-    date: new Date(2016, 10, 15),
+    date: getDate(2016, 10, 15),
     amount: 100.0,
     organization: CEA
   },
   {
-    date: new Date(2016, 10, 23),
+    date: getDate(2016, 10, 23),
     amount: 4.5,
     organization: GD
   },
   {
-    date: new Date(2016, 11, 8),
+    date: getDate(2016, 11, 8),
     amount: 130.0,
     organization: GD 
   },
   {
-    date: new Date(2016, 11, 26),
+    date: getDate(2016, 11, 26),
     amount: 82.0,
     organization: ACETC 
   },
   {
-    date: new Date(2016, 12, 5),
+    date: getDate(2016, 12, 5),
     amount: 31.40,
     organization: AMF 
   }
 ]
 
 // functionality
+
+//// utility functions
+
+function getDate(y, m, d) {
+  // given a date with months indexed starting from 1, returns a Date obj
+  return new Date(y, m - 1, d);
+}
 
 //// Disaggregated Table
 
