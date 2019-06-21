@@ -2,71 +2,85 @@
 
 // organizations
 var ACE = {
+  shortName: 'ACE',
   name: 'Animal Charity Evaluators',
   desc: 'Charity evaluator for animal-focused charities',
   href: 'https://animalcharityevaluators.org/'
 };
 var ACETC = {
+  shortName: 'ACETC',
   name: 'Animal Charity Evaluators Top Charities Fund',
   desc: 'Fund for ACE to redistribute to its top charities',
   href: 'https://animalcharityevaluators.org/'
 };
 var ACEEAA = {
+  shortName: 'ACEEAA',
   name: 'Animal Charity Evaluators Effective Animal Advocacy Fund',
   desc: 'Fund for ACE to redistribute to promising charities, where money is most needed',
   href: 'https://animalcharityevaluators.org/'
 };
 var AMF = {
+  shortName: 'AMF',
   name: 'Against Malaria Foundation',
   desc: 'Distributes insecticide-treated bed nets with assistance from local distributors',
   href: 'https://www.againstmalaria.com/'
 };
 var CEA = {
+  shortName: 'CEA',
   name: 'Centre for Effective Altruism',
   desc: 'Grows and maintains the Effective Altruism movement',
   href: 'https://www.centreforeffectivealtruism.org/'
 };
 var CEAAW = {
+  shortName: 'CEAAW',
   name: 'Centre for Effective Altruism - Animal Welfare Fund',
   desc: 'Fund for CEA to redistribute to organizations working on animal welfare with high expected impacts',
   href: 'https://app.effectivealtruism.org/funds/animal-welfare'
 };
 var CIWF = {
+  shortName: 'CIWF',
   name: 'Compassion In World Farming USA',
   desc: 'Campaigning and lobbying animal welfare organisation',
   href: 'https://www.ciwf.com/'
 };
 var DTW = {
+  shortName: 'DTW',
   name: 'Deworm the World',
   desc: 'Supports school-based deworming initiatives worldwide',
   href: 'https://www.evidenceaction.org/dewormtheworld/'
 };
 var GD = {
+  shortName: 'GD',
   name: 'GiveDirectly',
   desc: 'Funds one-time unconditional direct cash transfers to low-income individuals in Sub-Saharan Africa',
   href: 'https://www.givedirectly.org/'
 };
 var GWR = {
+  shortName: 'GWR',
   name: 'GiveWell top charities',
   desc: 'Fund for GiveWell to redistribute to its top charities',
   href: 'http://www.givewell.org/'
 };
 var MC = {
+  shortName: 'MC',
   name: 'Malaria Consortium',
   desc: 'Funds seasonal malaria chemoprevention interventions in Africa and Asia',
   href: 'https://www.malariaconsortium.org/'
 };
 var MFA = {
+  shortName: 'MFA',
   name: 'Mercy For Animals',
   desc: 'Funds various farmed animal advocacy programs',
   href: 'https://mercyforanimals.org/'
 };
 var SCI = {
+  shortName: 'SCI',
   name: 'Schistosomiasis Control Initiative',
   desc: 'Funds deworming programs in sub-Saharan Africa',
   href: 'http://www3.imperial.ac.uk/schisto'
 };
 var SI = {
+  shortName: 'SI',
   name: 'Sentience Institute',
   desc: 'Think tank dedicated to expanding humanity\'s moral circle (largely via animal advocacy)',
   href: 'https://www.sentienceinstitute.org/'
@@ -361,5 +375,49 @@ function addSummaryRows() {
   }
 }
 
+//// bar chart
+
+function getOrgSummaryDonations() {
+  orgData = {};
+  for(i = 0; i < donations.length; i++) {
+    org = donations[i].organization;
+    orgName = org.shortName;
+    if(!(orgName in orgData)) {
+      orgData[orgName] = {"amount": 0, "name": org.name};
+    }
+    orgData[orgName].amount += donations[i].amount;
+  }
+  return orgData;
+}
+
+function addSummaryChart() {
+  plotlyData = {
+    "type": "bar", 
+    "marker": { "color": "#765D85" },
+    "x": [], 
+    "y": [],
+    "text": [] };
+  
+  data = getOrgSummaryDonations();
+  orgs = Object.keys(data);
+  orgs.sort(function(o1, o2) { return data[o2].amount - data[o1].amount; }) // reverse order
+  for(i = 0; i < orgs.length; i++) {
+    plotlyData.x = plotlyData.x.concat(orgs[i]);
+    plotlyData.y = plotlyData.y.concat(data[orgs[i]].amount);
+    plotlyData.text = plotlyData.text.concat(data[orgs[i]].name);
+  }
+
+  plotlyLayout = {
+    "font": { "family": "Helvetica Neue", "color": "#555555" },
+    "title": "Total Donations ($USD)",
+    "margin": { "l": 75, "r": 75, "b": 50, "t": 50 },
+    "paper_bgcolor": "rgba(0,0,0,0)", 
+    "plot_bgcolor": "rgba(0,0,0,0)",
+    "xaxis": { "tickangle": 45 } };
+
+  Plotly.newPlot("summaryChart", [plotlyData], plotlyLayout, {"responsive": true});
+}
+
 addSummaryRows();
 addDetailedRows();
+addSummaryChart();
