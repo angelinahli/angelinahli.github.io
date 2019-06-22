@@ -112,11 +112,49 @@ function getCarouselItem(project) {
   return carouselItem;
 }
 
-function addCarouselItems() {
-  carouselInner = document.getElementById("carouselInner");
+function getNavButton(carouselId, dataSlide, label) {
+  btn = document.createElement("a");
+  btn.setAttribute("class", `carousel-control-${dataSlide}`);
+  btn.setAttribute("href", `#${carouselId}`);
+  btn.setAttribute("role", "button");
+  btn.setAttribute("data-slide", dataSlide);
+
+  icon = document.createElement("span");
+  icon.setAttribute("class", `carousel-control-${dataSlide}-icon`);
+  icon.setAttribute("aria-hidden", "true");
+
+  sr = document.createElement("span");
+  sr.setAttribute("class", "sr-only");
+  sr.innerHTML = label;
+
+  btn.appendChild(icon);
+  btn.appendChild(sr);
+
+  return btn;
+}
+
+function addCarousel() {
+  contentWrapper = document.getElementById("portfolioContent");
+
+  carousel = document.createElement("div");
+  carouselId = "carouselPortfolio";
+  carousel.setAttribute("id", carouselId);
+  carousel.setAttribute("class", "carousel slide carousel-fade");
+  carousel.setAttribute("data-ride", "carousel");
+  carousel.setAttribute("data-interval", "false");
+
+  carouselInner = document.createElement("div");
+  carouselInner.setAttribute("class", "carouselInner");
   for(const project of portfolio) {
     carouselInner.appendChild( getCarouselItem(project) );
   }
+
+  carousel.appendChild(carouselInner);
+
+  contentWrapper.appendChild(carousel);
+  contentWrapper.appendChild( getNavButton(carouselId, "prev", "Previous") );
+  contentWrapper.appendChild( getNavButton(carouselId, "next", "Next") );
 }
 
-addCarouselItems();
+addCarousel();
+
