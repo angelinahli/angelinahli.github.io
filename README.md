@@ -1,5 +1,7 @@
 ## Repository to host personal website
 
 ### To-Do:
-* Make a portfolio page
 * Link all little applets to page directly
+* Reformat main page to toggle between portfolio carousel view and portfolio
+  list view
+* Make matching game

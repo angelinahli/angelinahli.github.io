@@ -89,174 +89,174 @@ var SI = {
 // data
 var donations = [
   {
-    date: getDate(2019, 1, 4),
+    date: makeUtilityDate(2019, 1, 4),
     amount: 2000.0,
     organization:  SI
   },
   {
-    date: getDate(2019, 4, 18),
+    date: makeUtilityDate(2019, 4, 18),
     amount: 15.0,
     organization: MC,
     notes: 'Birthday donation'
   },
   {
-    date: getDate(2018, 2, 22),
+    date: makeUtilityDate(2018, 2, 22),
     amount: 60.0,
     organization: CIWF,
     notes: 'Birthday donation'
   },
   {
-    date: getDate(2018, 9, 21),
+    date: makeUtilityDate(2018, 9, 21),
     amount: 20.0,
     organization: GD,
     notes: 'Birthday donation'
   },
   {
-    date: getDate(2018, 10, 2),
+    date: makeUtilityDate(2018, 10, 2),
     amount: 20.0,
     organization: DTW,
     notes: 'Birthday donation'
   },
   {
-    date: getDate(2018, 10, 12),
+    date: makeUtilityDate(2018, 10, 12),
     amount: 24.0,
     organization: AMF,
     notes: 'Birthday donation'
   },
   {
-    date: getDate(2018, 11, 27),
+    date: makeUtilityDate(2018, 11, 27),
     amount: 20.0,
     organization: CEA,
     notes: 'Practice donations for Giving Tuesday donation drive'
   },
   {
-    date: getDate(2018, 11, 27),
+    date: makeUtilityDate(2018, 11, 27),
     amount: 2499.0,
     organization: CEAAW,
     notes: 'Part of Giving Tuesday donation drive'
   },
   {
-    date: getDate(2018, 11, 27),
+    date: makeUtilityDate(2018, 11, 27),
     amount: 2499.0,
     organization: ACEEAA,
     notes: 'Part of Giving Tuesday donation drive'
   },
   {
-    date: getDate(2017, 1, 3),
+    date: makeUtilityDate(2017, 1, 3),
     amount: 12.0,
     organization: CEA 
   },
   {
-    date: getDate(2017, 11, 27),
+    date: makeUtilityDate(2017, 11, 27),
     amount: 5.0,
     organization: MFA,
     notes: 'Practice donation for Giving Tuesday donation drive'
   },
   {
-    date: getDate(2017, 11, 28),
+    date: makeUtilityDate(2017, 11, 28),
     amount: 1000.0,
     organization: ACE,
     notes: 'Part of Giving Tuesday donation drive'
   },
   {
-    date: getDate(2017, 11, 28),
+    date: makeUtilityDate(2017, 11, 28),
     amount: 1000.0,
     organization: CEAAW,
     notes: 'Part of Giving Tuesday donation drive'
   },
   {
-    date: getDate(2017, 12, 1),
+    date: makeUtilityDate(2017, 12, 1),
     amount: 10.0,
     organization: GD,
     notes: 'Birthday donation' 
   },
   {
-    date: getDate(2017, 12, 30),
+    date: makeUtilityDate(2017, 12, 30),
     amount: 5000.0, /* 2 installments of 2500$ */
     organization: CEAAW
   },
   {
-    date: getDate(2017, 12, 31),
+    date: makeUtilityDate(2017, 12, 31),
     amount: 1400.0, /* 1 installment of 750 + 1 installment of 650 */
     organization: ACEEAA
   },
   {
-    date: getDate(2016, 4, 3),
+    date: makeUtilityDate(2016, 4, 3),
     amount: 100.0,
     organization: GWR
   },
   {
-    date: getDate(2016, 5, 14),
+    date: makeUtilityDate(2016, 5, 14),
     amount: 10.0,
     organization: ACETC
   },
   {
-    date: getDate(2016, 6, 1),
+    date: makeUtilityDate(2016, 6, 1),
     amount: 40.0,
     organization: CEA 
   },
   {
-    date: getDate(2016, 6, 1),
+    date: makeUtilityDate(2016, 6, 1),
     amount: 60.0,
     organization: ACETC 
   },
   {
-    date: getDate(2016, 6, 1),
+    date: makeUtilityDate(2016, 6, 1),
     amount: 100.0,
     organization: GWR 
   },
   {
-    date: getDate(2016, 6, 19),
+    date: makeUtilityDate(2016, 6, 19),
     amount: 24.0,
     organization: GD,
   },
   {
-    date: getDate(2016, 6, 25),
+    date: makeUtilityDate(2016, 6, 25),
     amount: 62.17,
     organization: GD
   },
   {
-    date: getDate(2016, 7, 4),
+    date: makeUtilityDate(2016, 7, 4),
     amount: 100.0,
     organization: AMF
   },
   {
-    date: getDate(2016, 7, 15),
+    date: makeUtilityDate(2016, 7, 15),
     amount: 100.0,
     organization: ACETC
   },
   {
-    date: getDate(2016, 7, 29),
+    date: makeUtilityDate(2016, 7, 29),
     amount: 945.80,
     organization: AMF 
   },
   {
-    date: getDate(2016, 9, 1),
+    date: makeUtilityDate(2016, 9, 1),
     amount: 40.0,
     organization: CEA 
   },
   {
-    date: getDate(2016, 10, 15),
+    date: makeUtilityDate(2016, 10, 15),
     amount: 100.0,
     organization: CEA
   },
   {
-    date: getDate(2016, 10, 23),
+    date: makeUtilityDate(2016, 10, 23),
     amount: 4.5,
     organization: GD
   },
   {
-    date: getDate(2016, 11, 8),
+    date: makeUtilityDate(2016, 11, 8),
     amount: 130.0,
     organization: GD 
   },
   {
-    date: getDate(2016, 11, 26),
+    date: makeUtilityDate(2016, 11, 26),
     amount: 82.0,
     organization: ACETC 
   },
   {
-    date: getDate(2016, 12, 5),
+    date: makeUtilityDate(2016, 12, 5),
     amount: 31.40,
     organization: AMF 
   }
@@ -266,22 +266,23 @@ var donations = [
 
 //// utility functions
 
-function getDate(y, m, d) {
-  // given a date with months indexed starting from 1, returns a Date obj
-  return new Date(y, m - 1, d);
-}
-
-//// Disaggregated Table
-
-function getAmountString(amount) {
-  return Math.round(amount).toLocaleString();
+function makeUtilityDate(y, m, d) {
+  return {
+    year: y,
+    month: m,
+    day: d,
+    stringValue: y + "-" 
+             + getDateNumString(m) + "-" 
+             + getDateNumString(d),
+    date: new Date(y, m - 1, d)
+  }
 }
 
 function getDateNumString(num) {
-  // given an integer < 100, will return a two-char long string
-  // representing the num
   return num < 10 ? "0" + num : num;
 }
+
+//// Disaggregated Table
 
 function getColWithChild(child) {
   col = document.createElement("td");
@@ -290,12 +291,8 @@ function getColWithChild(child) {
 }
 
 function getDateCol(date) {
-  yearString = date.getFullYear().toString();
-  monthString = getDateNumString(date.getMonth() + 1);
-  dayString = getDateNumString(date.getDate());
-  dateString = yearString + "-" + monthString + "-" + dayString;
   col = document.createElement("td");
-  col.innerHTML = dateString;
+  col.innerHTML = date.stringValue;
   return col;
 }
 
@@ -311,14 +308,15 @@ function getOrgCol(org) {
 }
 
 function getAmountCol(amount) {
+  roundedAmountString = Math.round(amount).toLocaleString();
   rightAlign = document.createElement("div");
   rightAlign.setAttribute("class", "text-right");
-  rightAlign.innerHTML = getAmountString(amount);
+  rightAlign.innerHTML = roundedAmountString;
   return getColWithChild(rightAlign);
 }
 
 function getNotesCol(notes) {
-  text = notes == null ? "" : notes;
+  text = notes ? notes : "";
   small = document.createElement("small");
   small.innerHTML = text;
   return getColWithChild(small);
@@ -335,11 +333,11 @@ function getDetailedRow(rowData) {
 
 function addDetailedRows() {
   tableInner = document.getElementById("disaggregatedTableInner");
-  donations.sort(function(don1, don2) {
-    return don2.date.valueOf() - don1.date.valueOf(); // sort in reverse
+  donations.sort(function(d1, d2) {
+    return d2.date.date.valueOf() - d1.date.date.valueOf(); // sort in reverse
   });
-  for(i = 0; i < donations.length; i++) {
-    tableInner.appendChild(getDetailedRow(donations[i]));
+  for(const d of donations) {
+    tableInner.appendChild(getDetailedRow(d));
   }
 }
 
@@ -347,10 +345,10 @@ function addDetailedRows() {
 
 function getYearSummaryDonations() {
   yearData = {};
-  for(i = 0; i < donations.length; i++) {
-    year = donations[i].date.getFullYear();
+  for(const d of donations) {
+    year = d.date.year;
     if(!(year in yearData)) { yearData[year] = 0; }
-    yearData[year] += donations[i].amount;
+    yearData[year] += d.amount;
   }
   return yearData;
 }
@@ -374,9 +372,9 @@ function addSummaryRows() {
   summaryDonations = getYearSummaryDonations();
   years = Object.keys(summaryDonations);
   years.sort(function(y1, y2) { return parseInt(y2) - parseInt(y1); }) // reverse order
-  for(i = 0; i < years.length; i++) {
-    year = parseInt(years[i]);
-    tableInner.append(getSummaryRow(summaryDonations, parseInt(year)));
+  for(const y of years) {
+    year = parseInt(y);
+    tableInner.append(getSummaryRow(summaryDonations, year));
   }
 }
 
@@ -384,13 +382,13 @@ function addSummaryRows() {
 
 function getOrgSummaryDonations() {
   orgData = {};
-  for(i = 0; i < donations.length; i++) {
-    org = donations[i].organization;
+  for(const d of donations) {
+    org = d.organization;
     orgName = org.shortName;
     if(!(orgName in orgData)) {
       orgData[orgName] = {"amount": 0, "name": org.name};
     }
-    orgData[orgName].amount += donations[i].amount;
+    orgData[orgName].amount += d.amount;
   }
   return orgData;
 }
@@ -406,15 +404,17 @@ function addSummaryChart() {
   data = getOrgSummaryDonations();
   orgs = Object.keys(data);
   orgs.sort(function(o1, o2) { return data[o2].amount - data[o1].amount; }) // reverse order
-  for(i = 0; i < orgs.length; i++) {
-    plotlyData.x = plotlyData.x.concat(orgs[i]);
-    plotlyData.y = plotlyData.y.concat(data[orgs[i]].amount);
-    plotlyData.text = plotlyData.text.concat(data[orgs[i]].name);
+  for(const org of orgs) {
+    plotlyData.x.push(org);
+    plotlyData.y.push(data[org].amount);
+    plotlyData.text.push(data[org].name);
   }
 
   plotlyLayout = {
     "font": { "family": "Helvetica Neue", "color": "#555555" },
     "title": "Total Donations (USD)",
+    "xaxis": { "font": { "family": "Helvetica Neue", "color": "#555555" } },
+    "yaxis": { "font": { "family": "Helvetica Neue", "color": "#555555" } },
     "margin": { "l": 75, "r": 75, "b": 50, "t": 50 },
     "paper_bgcolor": "rgba(0,0,0,0)", 
     "plot_bgcolor": "rgba(0,0,0,0)",
