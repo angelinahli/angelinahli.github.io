@@ -89,6 +89,12 @@ var SI = {
 // data
 var donations = [
   {
+    date: makeUtilityDate(2019, 7, 4),
+    amount: 500.0,
+    organization: GWR,
+    notes: 'Memorial donation'
+  },
+  {
     date: makeUtilityDate(2019, 1, 4),
     amount: 2000.0,
     organization:  SI
