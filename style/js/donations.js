@@ -19,6 +19,12 @@ var ACEEAA = {
   desc: 'Fund for ACE to redistribute to promising charities, where money is most needed',
   href: 'https://animalcharityevaluators.org/'
 };
+var ACLUI = {
+  shortName: 'ACLUI',
+  name: 'American Civil Liberties Union - Immigrant Rights',
+  desc: 'Fund for the ACLU to protect immigrants\' rights',
+  href: 'https://www.aclu.org/'
+}
 var AMF = {
   shortName: 'AMF',
   name: 'Against Malaria Foundation',
@@ -88,6 +94,12 @@ var SI = {
 
 // data
 var donations = [
+  {
+    date: makeUtilityDate(2019, 7, 18),
+    amount: 20.0,
+    organization: ACLUI,
+    notes: 'Birthday donation'
+  }
   {
     date: makeUtilityDate(2019, 7, 4),
     amount: 500.0,
