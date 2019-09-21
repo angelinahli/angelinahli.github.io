@@ -43,6 +43,12 @@ var CEAAW = {
   desc: 'Fund for CEA to redistribute to organizations working on animal welfare with high expected impacts',
   href: 'https://app.effectivealtruism.org/funds/animal-welfare'
 };
+var CEALTF = {
+  shortName: 'CEALTF',
+  name: 'Center for Effective Altruism - Long Term Future Fund',
+  desc: 'Fund for CEA to redistribute to organizations working on the long term future with high expected impacts',
+  href: 'https://app.effectivealtruism.org/funds/far-future'
+};
 var CIWF = {
   shortName: 'CIWF',
   name: 'Compassion In World Farming USA',
@@ -90,10 +96,48 @@ var SI = {
   name: 'Sentience Institute',
   desc: 'Think tank dedicated to expanding humanity\'s moral circle (largely via animal advocacy)',
   href: 'https://www.sentienceinstitute.org/'
+};
+var WAI = {
+  shortName: 'WAI',
+  name: 'Wild Animal Initiative',
+  desc: 'Organization to research, raise awareness, and reduce the suffering of wild animals',
+  href: 'https://www.wildanimalinitiative.org/'
 }
 
 // data
 var donations = [
+  {
+    date: makeUtilityDate(2019, 9, 21),
+    amount: 50.0,
+    organization: MC,
+    notes: 'Birthday donation'
+  },
+  {
+    date: makeUtilityDate(2019, 9, 21),
+    amount: 50.0,
+    organization: WAI,
+    notes: 'Birthday donation'
+  },
+  {
+    date: makeUtilityDate(2019, 9, 21),
+    amount: 3200.0,
+    organization: CEAAW
+  },
+  {
+    date: makeUtilityDate(2019, 9, 21),
+    amount: 800.0,
+    organization: CEALTF
+  },
+  {
+    date: makeUtilityDate(2019, 9, 10),
+    amount: 4800.0,
+    organization: CEAAW
+  },
+  {
+    date: makeUtilityDate(2019, 9, 10),
+    amount: 1200.0,
+    organization: CEALTF
+  },
   {
     date: makeUtilityDate(2019, 7, 18),
     amount: 20.0,
