@@ -143,7 +143,7 @@ var donations = [
     amount: 20.0,
     organization: ACLUI,
     notes: 'Birthday donation'
-  }
+  },
   {
     date: makeUtilityDate(2019, 7, 4),
     amount: 500.0,
