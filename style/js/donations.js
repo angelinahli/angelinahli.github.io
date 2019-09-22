@@ -120,12 +120,12 @@ var donations = [
   },
   {
     date: makeUtilityDate(2019, 9, 21),
-    amount: 3200.0,
+    amount: 3600.0,
     organization: CEAAW
   },
   {
     date: makeUtilityDate(2019, 9, 21),
-    amount: 800.0,
+    amount: 900.0,
     organization: CEALTF
   },
   {
