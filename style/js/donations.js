@@ -107,6 +107,18 @@ var WAI = {
 // data
 var donations = [
   {
+    date: makeUtilityDate(2019, 9, 30),
+    amount: 5200.0,
+    organization: CEAAW,
+    notes: 'Rolled up several donations into one'
+  },
+  {
+    date: makeUtilityDate(2019, 9, 30),
+    amount: 1300.0,
+    organization: CEALTF,
+    notes: 'Rolled up several donations into one'
+  },
+  {
     date: makeUtilityDate(2019, 9, 21),
     amount: 50.0,
     organization: MC,
