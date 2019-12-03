@@ -37,7 +37,7 @@
         textElement.innerHTML = "Current Time: <b>" + timeText + "</b>";
     }
     function getTimeUnitString(timeUnit) {
-        return timeUnit > 10 ? timeUnit : "0" + timeUnit;
+        return timeUnit >= 10 ? timeUnit : "0" + timeUnit;
     }
 </script>
 
