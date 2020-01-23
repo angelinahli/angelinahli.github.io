@@ -31,6 +31,14 @@ portfolio = [
     ["Python", "JavaScript", "MySQL", "Flask"],
     "https://github.com/angelinahli/tt3/"
   ),
+    makeProject(
+    "Minesweeper",
+    "",
+    "./img/projects/minesweeper.png",
+    "A minimalist React-based take on the classic minesweeper game.",
+    ["JavaScript", "React"],
+    "https://minesweeper.angelinahli.com/"
+  ),
   makeProject(
     "Meet Me",
     "Best Hack, SisterHacks 2018",
@@ -46,14 +54,6 @@ portfolio = [
     "An interactive, multi-panel game where the user navigates via keystrokes and dodges progressively faster falling rain drops.",
     ["Java"],
     "https://github.com/angelinahli/rain-run/"
-  ),
-  makeProject(
-    "Minesweeper",
-    "",
-    "./img/projects/minesweeper.png",
-    "A minimalist React-based take on the classic minesweeper game.",
-    ["JavaScript", "React"],
-    "https://minesweeper.angelinahli.com/"
   )
 ]
 
@@ -83,9 +83,9 @@ function getRow(project) {
   var subtitle = `<p class="lead">${project.subtitle}</p>`;
   var desc = `<p>${project.description}</p>`;
   var tech = `<p class="card-text"><i class="fa fa-wrench"></i> ${project.technologies.join(", ")}</p>`;
-  var btn = `<a href="${project.link}" type="button" class="btn btn-primary">View Project</a>`;
+  var btn = `<a href="${project.link}" type="button" class="btn btn-dark">View Project</a>`;
 
-  var rightColHTML = title;
+  var rightColHTML = `<div style="margin: 10px;"></div>` + title;
   if(project.subtitle) { rightColHTML += subtitle; }
   rightColHTML += desc + tech;
   if(project.link) { rightColHTML += btn; }

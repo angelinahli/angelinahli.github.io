@@ -83,6 +83,10 @@ section {
   background-color: var(--main-color) !important;
 }
 
+.bg-faded {
+  background-color: var(--light-color) !important;
+}
+
 .bg-dark {
   color: white;
   background-color: #222222 !important;
@@ -100,8 +104,12 @@ section {
   color: #777777;
 }
 
+.text-light {
+  color: var(--light-bg-color);
+}
+
 .text-primary {
-  color: var(--main-color);
+  color: var(--main-color) !important;
 }
 
 .text-faded {
