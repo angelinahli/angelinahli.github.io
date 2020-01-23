@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="Angelina Li's Website">
   <meta name="author" content="Angelina Li">
-  <title>Angelina Li - Giving</title>
+  <title>Angelina Li</title>
 
   <link rel="icon" href="./img/favicon/favicon-16.png" type="image/png" sizes="16x16">
   <link rel="icon" href="./img/favicon/favicon-32.png" type="image/png" sizes="32x32">
@@ -16,7 +16,7 @@
   <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
   <!-- Custom fonts for this template -->
   <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans|PT+Sans" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700|Merriweather:400|Fira+Mono:400,700&display=swap" rel="stylesheet">
 
   <!-- Plugin CSS -->
   <link href="vendor/magnific-popup/magnific-popup.css" rel="stylesheet">
@@ -27,7 +27,7 @@
 
 <body id="page-top">
   <!-- Navigation -->
-  <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top text-black" id="mainNav">
+  <nav class="navbar navbar-expand-lg fixed-top text-black" id="mainNav">
     <div class="container">
       <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -42,14 +42,8 @@
           </li>
 
           <li class="nav-item text-black">
-            <a class="nav-link js-scroll-trigger" href="./#portfolio"> 
-              Portfolio
-            </a>
-          </li>
-
-          <li class="nav-item text-black">
-            <a class="nav-link js-scroll-trigger" href="donations.html">
-              Giving
+            <a class="nav-link js-scroll-trigger" href="projects.html"> 
+              Projects
             </a>
           </li>
 
@@ -68,71 +62,19 @@
     </div>
   </nav>
 
-  <section class="bg-light text-black text-center">
+  <section class="text-black">
     <div class="container">
 
       <div class="row">
-        <div class="col-lg-8 col-md-8 mx-auto">
+        <div class="col-lg-10 col-md-10 mx-auto">
 
-          <h1 class="display-3">Giving</h1>
-
-          <br>
-
-          I've always found 
-          <a href="https://www.benkuhn.net/ea/">other</a>
-          <a href="https://www.jefftk.com/donations">people's</a>
-          donation logs a helpful resource in motivating my own giving habits;
-          I'm publishing my own donation log in the hopes it can be useful to
-          others also.
-
-          <br>
-          <br>
-
-          <h4>By Year</h4>
-
-          <table class="table table-hover">
-            <thead>
-              <tr>
-                <th scope="col" class="text-center">Year</th>
-                <th scope="col" class="text-right">Total Donations (USD)</th>
-              </tr> 
-            </thead>
-
-            <tbody id="summaryTableInner">
-            </tbody>
-
-          </table>
-
-          <h4>By Organization</h4>
-          <p>Hover over each bar to see the organization's name.</p>
-          <div id="summaryChart"></div>
-
-          <br>
-
-          <h4>Detailed Breakdown</h4>
-          <p>Hover over each organization's name for a short 
-          description of what they do.</p>
-
-          <table class="table table-hover table-sm">
-            <thead>
-              <tr>
-                <th scope="col" style="width: 15%" class="text-center">Date</th>
-                <th scope="col" class="text-center">Organization</th>
-                <th scope="col" class="text-right">Amount</th>
-                <th scope="col" class="text-center">Notes</th>
-              </tr> 
-            </thead>
-
-            <tbody id="disaggregatedTableInner">
-            </tbody>
-
-          </table>
-
-          </div>
-
+          <h1 class="text-title"><b>Stuff I've Made</b></h1>
+          <div id="portfolioContent"></div>
+          
       </div>
+
     </div>
- </section>
+  </section>
 
   <!-- Bootstrap core JavaScript -->
   <script src="vendor/jquery/jquery.min.js"></script>
@@ -142,10 +84,9 @@
   <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
   <script src="vendor/scrollreveal/scrollreveal.min.js"></script>
   <script src="vendor/magnific-popup/jquery.magnific-popup.min.js"></script>
-  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
   <!-- Custom scripts for this template -->
   <script src="style/js/creative.min.js"></script>
-  <script src="style/js/donations.js"></script>
+  <script src="style/js/portfolio.js"></script>
 </body>
 
 </html>

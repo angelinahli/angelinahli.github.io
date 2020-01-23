@@ -82,7 +82,7 @@ function getCarouselItem(project) {
   else { carouselItem.setAttribute("class", "carousel-item"); }
 
   card = document.createElement("div");
-  card.setAttribute("class", "card bg-dark text-light");
+  card.setAttribute("class", "card text-black");
 
   cardImg = document.createElement("img");
   cardImg.setAttribute("class", "card-img-top");

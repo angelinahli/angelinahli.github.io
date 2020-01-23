@@ -16,7 +16,7 @@
   <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
   <!-- Custom fonts for this template -->
   <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans|PT+Sans" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700|Merriweather:400&display=swap" rel="stylesheet">
 
   <!-- Plugin CSS -->
   <link href="vendor/magnific-popup/magnific-popup.css" rel="stylesheet">
@@ -27,7 +27,7 @@
 
 <body id="page-top">
   <!-- Navigation -->
-  <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top text-black" id="mainNav">
+  <nav class="navbar navbar-expand-lg fixed-top text-black" id="mainNav">
     <div class="container">
       <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -42,14 +42,8 @@
           </li>
 
           <li class="nav-item text-black">
-            <a class="nav-link js-scroll-trigger" href="#portfolio"> 
-              Portfolio
-            </a>
-          </li>
-
-          <li class="nav-item text-black">
-            <a class="nav-link js-scroll-trigger" href="donations.html">
-              Giving
+            <a class="nav-link js-scroll-trigger" href="projects.html"> 
+              Projects
             </a>
           </li>
 
@@ -68,84 +62,88 @@
     </div>
   </nav>
 
-  <section class="bg-light text-black text-center">
+  <section class="text-black">
     <div class="container">
 
       <div class="row">
-        <div class="col-lg-7 col-md-7 mx-auto">
+        <div class="col">
 
-          <img src="./img/headshot.png" class="img-fluid" style="width: 220px;"></img>
-
-          <br>
-          <br>
-
-          <h1 class="display-3">Angelina Li</h1>
-          <h5 class="lead">
-            Incoming Analyst, Analysis Group
-          </h5>
-
-          <br>
-
-          <p>
-          Hello! I recently graduated from
-          <a href="https://www.wellesley.edu/">Wellesley College</a> (class of 2019), 
-          with a degree in Economics and Computer Science.
-
-          I will join 
-          <a href="http://www.analysisgroup.com/">Analysis Group</a>
-          as a full time analyst in the summer of 2019.
-
-          I have also worked as a research assistant at the 
-          <a href="http://www.nber.org/">National Bureau of Economic
-            Research</a>,
-          and have conducted full and part time research alongside 
-          <a href="https://siepr.stanford.edu/people/daniel-fetter/">Wellesley</a>
-          <a href="https://www.wellesley.edu/environmentalstudies/facstaff/desombre/">professors</a>. 
-          
-          If you want to learn more about me, feel free to browse through 
-          <a href="#portfolio">my portfolio</a> 
-          and check out my <a class="index-link" href="./resume.pdf">resume</a>.
-
-          </p>
-
-          <a href="mailto:angelina.li@wellesley.edu">
-            <i class="fa fa-envelope-o fa-2x sr-contact">&nbsp</i>
-          </a>
-
-          <a href="https://www.linkedin.com/in/angelinahli/">
-            <i class="fa fa-linkedin fa-2x sr-contact">&nbsp</i>
-          </a>
-
-          <a href="https://github.com/angelinahli">
-            <i class="fa fa-github fa-2x sr-contact">&nbsp</i>
-          </a>
-
-        </div>
-
-      </div>
-
-    </div>
-  </section>
-
-  <section class="bg-dark text-center" id="portfolio">
-    <div class="container">
-
-      <div class="row text-light">
-        <div class="col-lg-7 col-md-7 mx-auto">
-          <h2 class="display-4">Portfolio</h2>
-          <br>
+          <h1 class="text-title"><b>print("Hi, I'm Angelina!")</b></h1>
+          <p class="lead text-grey"><i># I'm a data nerd, web-app developer and cat mom</i></p>
         </div>
       </div>
 
-      <!--Content Wrapper-->
       <div class="row">
-        <div class="col-lg-7 col-md-7 mx-auto">
-          <div id="portfolioContent"></div>
+
+        <div class="col-lg-4 col-md-4 mx-auto">
+          <img src="./img/copenhagen.jpg" class="img-fluid rounded">
+        </div>
+
+        <div class="col-lg-8 col-md-8 mx-auto">
+          <div class="timeline">
+
+            <div class="timeline-container">
+              <div class="timeline-content">
+                <h5>Aug '19</h5>
+                Joined <a href="http://www.analysisgroup.com/">Analysis Group</a> as a full-time analyst
+              </div>
+            </div>
+            <div class="timeline-container">
+              <div class="timeline-content">
+                <h5>May '19</h5>
+                Graduated from <a href="https://www.wellesley.edu/">Wellesley College</a> 
+                with a BA in Economics and Computer Science
+              </div>
+            </div>
+            <div class="timeline-container">
+              <div class="timeline-content">
+                <h5>Jan '19</h5>
+                Designed <a href="https://cs.wellesley.edu/~cs230/">Data Structures</a> coursework with <a href="https://www.wellesley.edu/cs/faculty/lerner">Ada Lerner</a>
+              </div>
+            </div>
+            <div class="timeline-container">
+              <div class="timeline-content">
+                <h5>Sep '17</h5>
+                Tutored <a href="https://cs111.wellesley.edu/">Introduction to Computer Science</a> students at Wellesley
+              </div>
+            </div>
+            <div class="timeline-container">
+              <div class="timeline-content">
+                <h5>Jun '17</h5>
+                Worked as a research assistant at the 
+                  <a href="http://www.nber.org/">National Bureau of Economic Research</a> with
+                  <a href="https://siepr.stanford.edu/people/daniel-fetter/">Dan Fetter</a>
+              </div>
+            </div>
 
           </div>
         </div>
-    </div>
 
+      </div>
+
+      <div class="row">
+        <div class="col">
+          <div style="margin: 20px;"></div>
+
+          <a href="mailto:angelina.li@wellesley.edu" data-toggle="tooltip" title="E-mail">
+            <i class="fa fa-envelope-o fa-2x sr-contact">&nbsp</i>
+          </a>
+
+          <a href="https://www.linkedin.com/in/angelinahli/" data-toggle="tooltip" title="LinkedIn">
+            <i class="fa fa-linkedin fa-2x sr-contact">&nbsp</i>
+          </a>
+
+          <a href="https://github.com/angelinahli" data-toggle="tooltip" title="GitHub">
+            <i class="fa fa-github fa-2x sr-contact">&nbsp</i>
+          </a>
+
+          <a href="./resume.pdf" data-toggle="tooltip" title="Resume">
+            <i class="fa fa-file fa-2x sr-contact">&nbsp</i>
+          </a>
+
+      </div>
+
+    </div>
   </section>
 
   <!-- Bootstrap core JavaScript -->
@@ -158,7 +156,6 @@
   <script src="vendor/magnific-popup/jquery.magnific-popup.min.js"></script>
   <!-- Custom scripts for this template -->
   <script src="style/js/creative.min.js"></script>
-  <script src="style/js/portfolio.js"></script>
 </body>
 
 </html>
