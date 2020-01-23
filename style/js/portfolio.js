@@ -48,12 +48,12 @@ portfolio = [
     "https://github.com/angelinahli/rain-run/"
   ),
   makeProject(
-    "Hangman Solver",
+    "Minesweeper",
     "",
-    "./img/projects/hangman_solver.png",
-    "A minimalist Flask app that uses text-frequency analysis to solve hangman words.",
-    ["Python", "Flask"],
-    "https://hangman-solver.herokuapp.com/"
+    "./img/projects/minesweeper.png",
+    "A minimalist React-based take on the classic minesweeper game.",
+    ["JavaScript", "React"],
+    "https://minesweeper.angelinahli.com/"
   )
 ]
 

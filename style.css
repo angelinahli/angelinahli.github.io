@@ -43,6 +43,20 @@ a:hover,
   color: var(--light-color);
 }
 
+.btn-primary {
+  background-color: var(--main-color);
+  border-color: var(--main-color);
+  -webkit-transition: all 0.2s;
+  -moz-transition: all 0.2s;
+  transition: all 0.2s;
+}
+
+.btn-primary:focus,
+.btn-primary:hover {
+  background-color: var(--light-color);
+  border-color: var(--light-color);
+}
+
 hr {
   max-width: 50px;
   border-width: 3px;
