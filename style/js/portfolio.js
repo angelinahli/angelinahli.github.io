@@ -5,8 +5,7 @@ portfolio = [
     "./img/projects/whackbot.png",
     "A chat-bot that delivers preventative mental health care via Facebook Messenger.",
     ["Python", "Flask", "Facebook Developer Tools"],
-    "https://github.com/angelinahli/whack-2018/",
-    true
+    "https://github.com/angelinahli/whack-2018/"
   ),
   makeProject(
     "The Bachelor and Race",
@@ -14,8 +13,7 @@ portfolio = [
     "./img/projects/bachelor.png",
     "A Dash-based data visualization exploring the intersection between the ABC Bachelor franchise and race.",
     ["Python", "Dash", "Flask", "Pandas"],
-    "https://bachelor-and-race.herokuapp.com/",
-    false
+    "https://bachelor-and-race.herokuapp.com/"
   ),
   makeProject(
     "Crossword Extravaganza",
@@ -23,8 +21,7 @@ portfolio = [
     "./img/projects/crossword.png",
     "A thread-safe, interactive crossword solving game, where users compete to solve a crossword puzzle together.",
     ["Java"],
-    "",
-    false
+    ""
   ),
   makeProject(
     "Better Than Tutor Trac",
@@ -32,8 +29,7 @@ portfolio = [
     "./img/projects/bttt.png",
     "An app to efficiently log visits to tutor drop-in office hours. Inspired by the 'TutorTrac' software used at Wellesley's Pforzheimer Learning and Teaching Center.",
     ["Python", "JavaScript", "MySQL", "Flask"],
-    "https://github.com/angelinahli/tt3/",
-    false
+    "https://github.com/angelinahli/tt3/"
   ),
   makeProject(
     "Meet Me",
@@ -41,8 +37,7 @@ portfolio = [
     "./img/projects/meet_me.png",
     "A web application that helps users plan events based on their existing calendars.",
     ["Python", "Flask"],
-    "https://github.com/angelinahli/meet-me/",
-    false
+    "https://github.com/angelinahli/meet-me/"
   ),
   makeProject(
     "Rain Run",
@@ -50,8 +45,7 @@ portfolio = [
     "./img/projects/rain_run.png",
     "An interactive, multi-panel game where the user navigates via keystrokes and dodges progressively faster falling rain drops.",
     ["Java"],
-    "https://github.com/angelinahli/rain-run/",
-    false
+    "https://github.com/angelinahli/rain-run/"
   ),
   makeProject(
     "Hangman Solver",
@@ -59,102 +53,59 @@ portfolio = [
     "./img/projects/hangman_solver.png",
     "A minimalist Flask app that uses text-frequency analysis to solve hangman words.",
     ["Python", "Flask"],
-    "https://hangman-solver.herokuapp.com/",
-    false
+    "https://hangman-solver.herokuapp.com/"
   )
 ]
 
-function makeProject(name, subtitle, imageSrc, description, technologies, link, active) {
+function makeProject(name, subtitle, imageSrc, description, technologies, link) {
   return {
     name: name,
     subtitle: subtitle,
     imageSrc: imageSrc,
     description: description,
     technologies: technologies,
-    link: link,
-    active: active
+    link: link
   }
 }
 
-function getCarouselItem(project) {
-  carouselItem = document.createElement("div");
-  if(project.active) { carouselItem.setAttribute("class", "carousel-item active"); }
-  else { carouselItem.setAttribute("class", "carousel-item"); }
+function getRow(project) {
+  var row = document.createElement("div");
+  row.setAttribute("class", "row row-project");
 
-  card = document.createElement("div");
-  card.setAttribute("class", "card text-black");
+  var leftCol = document.createElement("div");
+  leftCol.setAttribute("class", "col-lg-6 col-md-6 mx-auto");
 
-  cardImg = document.createElement("img");
-  cardImg.setAttribute("class", "card-img-top");
-  cardImg.setAttribute("src", project.imageSrc);
-  cardImg.setAttribute("alt", project.name);
+  var rightCol = document.createElement("div");
+  rightCol.setAttribute("class", "col-lg-6 col-md-6 mx-auto");
 
-  cardBody = document.createElement("div");
-  cardBody.setAttribute("class", "card-body");
+  var image = `<img src="${project.imageSrc}" alt="${project.name}" class="img-fluid rounded">`
+  var title = `<h4>${project.name}</h4>`;
+  var subtitle = `<p class="lead">${project.subtitle}</p>`;
+  var desc = `<p>${project.description}</p>`;
+  var tech = `<p class="card-text"><i class="fa fa-wrench"></i> ${project.technologies.join(", ")}</p>`;
+  var btn = `<a href="${project.link}" type="button" class="btn btn-primary">View Project</a>`;
 
-  title = `<h5 class="card-title">${project.name}</h5>`;
-  subtitle = `<h6 class="card-subtitle text-muted">${project.subtitle}</h6>`;
-  desc = `<p class="card-text">${project.description}</p>`;
-  tech = `<p class="card-text">Technologies used: ${project.technologies.join(", ")}</p>`;
-  btn = `<a href="${project.link}" target="_blank" class="btn btn-primary">Go to project</a>`;
+  var rightColHTML = title;
+  if(project.subtitle) { rightColHTML += subtitle; }
+  rightColHTML += desc + tech;
+  if(project.link) { rightColHTML += btn; }
 
-  cardBody.innerHTML += title;
-  if(project.subtitle) { cardBody.innerHTML += subtitle; }
-  cardBody.innerHTML += `<hr>`;
-  cardBody.innerHTML += desc;
-  cardBody.innerHTML += tech;
-  if(project.link) { cardBody.innerHTML += btn; }
+  $(leftCol).html( image );
+  $(rightCol).html( rightColHTML );
 
-  card.appendChild(cardImg);
-  card.appendChild(cardBody);
+  row.appendChild(leftCol);
+  row.appendChild(rightCol);
 
-  carouselItem.appendChild(card);
-  return carouselItem;
+  return row;
 }
 
-function getNavButton(carouselId, dataSlide, label) {
-  btn = document.createElement("a");
-  btn.setAttribute("class", `carousel-control-${dataSlide}`);
-  btn.setAttribute("href", `#${carouselId}`);
-  btn.setAttribute("role", "button");
-  btn.setAttribute("data-slide", dataSlide);
-
-  icon = document.createElement("span");
-  icon.setAttribute("class", `carousel-control-${dataSlide}-icon`);
-  icon.setAttribute("aria-hidden", "true");
-
-  sr = document.createElement("span");
-  sr.setAttribute("class", "sr-only");
-  sr.innerHTML = label;
-
-  btn.appendChild(icon);
-  btn.appendChild(sr);
-
-  return btn;
-}
-
-function addCarousel() {
-  contentWrapper = document.getElementById("portfolioContent");
-
-  carousel = document.createElement("div");
-  carouselId = "carouselPortfolio";
-  carousel.setAttribute("id", carouselId);
-  carousel.setAttribute("class", "carousel slide carousel-fade");
-  carousel.setAttribute("data-ride", "carousel");
-  carousel.setAttribute("data-interval", "false");
-
-  carouselInner = document.createElement("div");
-  carouselInner.setAttribute("class", "carouselInner");
+function addPortfolio() {
+  var container = document.getElementById("portfolioContent");
+  
   for(const project of portfolio) {
-    carouselInner.appendChild( getCarouselItem(project) );
+    $(container).append( getRow(project) );
   }
-
-  carousel.appendChild(carouselInner);
-
-  contentWrapper.appendChild(carousel);
-  contentWrapper.appendChild( getNavButton(carouselId, "prev", "Previous") );
-  contentWrapper.appendChild( getNavButton(carouselId, "next", "Next") );
 }
 
-addCarousel();
+addPortfolio();
 

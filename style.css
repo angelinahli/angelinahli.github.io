@@ -29,7 +29,7 @@ h6 {
   font-family: 'Merriweather', 'Helvetica Neue', 'Open Sans', Arial, sans-serif;
 }
 
-a {
+a, .btn-link {
   color: var(--main-color);
   -webkit-transition: all 0.2s;
   -moz-transition: all 0.2s;
@@ -37,7 +37,9 @@ a {
 }
 
 a:focus,
-a:hover {
+a:hover,
+.btn-link:focus,
+.btn-link:hover {
   color: var(--light-color);
 }
 
@@ -59,8 +61,8 @@ section {
   padding: 70px 0;
 }
 
-.lead {
-  font-size: 20px;
+.bg-light {
+  background-color: var(--light-bg-color) !important;
 }
 
 .bg-primary {
@@ -91,6 +93,14 @@ section {
 .text-faded {
   color: var(--light-color);
 }
+
+.row-project {
+  margin: 30px;
+}
+
+/**************
+ ** Timeline **
+ **************/
 
 .timeline {
   position: relative;
