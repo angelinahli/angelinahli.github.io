@@ -83,7 +83,7 @@ function getRow(project) {
   var subtitle = `<p class="lead">${project.subtitle}</p>`;
   var desc = `<p>${project.description}</p>`;
   var tech = `<p class="card-text"><i class="fa fa-wrench"></i> ${project.technologies.join(", ")}</p>`;
-  var btn = `<a href="${project.link}" type="button" class="btn btn-dark">View Project</a>`;
+  var btn = `<a href="${project.link}" type="button" class="btn btn-primary">View Project</a>`;
 
   var rightColHTML = `<div style="margin: 10px;"></div>` + title;
   if(project.subtitle) { rightColHTML += subtitle; }
