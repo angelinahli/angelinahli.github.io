@@ -1,5 +1,13 @@
 portfolio = [
   makeProject(
+    "US Non-Immigrant Visa Explorer",
+    "",
+    "./img/projects/visas.png",
+    "An interactive data visualization exploring issuances of non-immigrant visas in the United States.",
+    ["R", "R Shiny"],
+    "https://angelinahli.shinyapps.io/visas/"
+  ),
+  makeProject(
     "WHACK-Bot",
     "Best Hack, WHACK 2018",
     "./img/projects/whackbot.png",

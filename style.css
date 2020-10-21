@@ -7,6 +7,7 @@
   --main-color: #599ed9;
   --light-color: #90c3f0;
   --light-bg-color: #f2f2f2;
+  --dark-bg-color: #222222;
 }
 
 body,
@@ -64,11 +65,11 @@ hr {
 }
 
 hr.light {
-  border-color: white;
+  border-color: var(--light-bg-color);
 }
 
 hr.dark {
-  border-color: #222222;
+  border-color: var(--dark-bg-color);
 }
 
 section {
@@ -89,7 +90,7 @@ section {
 
 .bg-dark {
   color: white;
-  background-color: #222222 !important;
+  background-color: var(--dark-bg-color) !important;
 }
 
 .text-title {
