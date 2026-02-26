@@ -1,0 +1,1142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Drop Anchor</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27><text y=%27.9em%27 font-size=%2790%27>%E2%9A%93</text></svg>">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Nunito:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --bg: #F0EBE3;
+            --text: #2C2825;
+            --text-soft: #7A746E;
+            --text-faint: #B5AEA6;
+            --sage: #7D9B8A;
+            --sage-glow: rgba(125, 155, 138, 0.15);
+            --ocean: #7E9CAE;
+            --ocean-glow: rgba(126, 156, 174, 0.12);
+            --sand: #BFA670;
+            --sand-glow: rgba(191, 166, 112, 0.10);
+            --rose: #BF918A;
+            --rose-glow: rgba(191, 145, 138, 0.10);
+            --heart: #C4877E;
+        }
+
+        ::selection { background: rgba(125, 155, 138, 0.25); }
+
+        html, body {
+            height: 100%;
+            overflow: hidden;
+            font-family: 'Nunito', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* ── Background ── */
+        .bg {
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+            background:
+                radial-gradient(ellipse at 25% 25%, var(--sage-glow) 0%, transparent 55%),
+                radial-gradient(ellipse at 75% 55%, var(--ocean-glow) 0%, transparent 55%),
+                radial-gradient(ellipse at 45% 85%, var(--sand-glow) 0%, transparent 50%),
+                var(--bg);
+            transition: background 2s ease;
+        }
+
+        .orb {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(80px);
+            z-index: 0;
+            will-change: transform;
+            pointer-events: none;
+        }
+        .orb-1 {
+            width: 420px; height: 420px;
+            background: rgba(125, 155, 138, 0.13);
+            top: -8%; left: -8%;
+            animation: drift1 32s ease-in-out infinite;
+        }
+        .orb-2 {
+            width: 360px; height: 360px;
+            background: rgba(126, 156, 174, 0.10);
+            top: 45%; right: -12%;
+            animation: drift2 38s ease-in-out infinite;
+        }
+        .orb-3 {
+            width: 300px; height: 300px;
+            background: rgba(191, 145, 138, 0.09);
+            bottom: -6%; left: 25%;
+            animation: drift3 29s ease-in-out infinite;
+        }
+        .orb-4 {
+            width: 200px; height: 200px;
+            background: rgba(191, 166, 112, 0.08);
+            top: 20%; right: 20%;
+            animation: drift4 35s ease-in-out infinite;
+        }
+
+        @keyframes drift1 {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            33% { transform: translate(50px, 35px) scale(1.04); }
+            66% { transform: translate(-25px, 60px) scale(0.96); }
+        }
+        @keyframes drift2 {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            33% { transform: translate(-45px, -25px) scale(0.96); }
+            66% { transform: translate(25px, -50px) scale(1.04); }
+        }
+        @keyframes drift3 {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            33% { transform: translate(35px, -35px) scale(1.03); }
+            66% { transform: translate(-50px, 15px) scale(0.97); }
+        }
+        @keyframes drift4 {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(-30px, 25px) scale(1.06); }
+        }
+
+        /* ── Timer ── */
+        .timer-bar {
+            position: fixed;
+            top: 0; left: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--sage), var(--ocean));
+            opacity: 0;
+            z-index: 100;
+            width: 0%;
+            transition: width 1s linear, opacity 0.6s ease;
+            pointer-events: none;
+        }
+        .timer-bar.visible { opacity: 0.4; }
+
+        /* ── Screens ── */
+        .screen {
+            position: fixed;
+            inset: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 10;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.6s ease;
+            padding: 2.5rem;
+        }
+        .screen.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        /* ── Welcome ── */
+        .welcome-greeting {
+            font-weight: 300;
+            font-size: 0.8rem;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--text-soft);
+            margin-bottom: 2.2rem;
+            opacity: 0;
+            animation: rise 0.8s ease 0.2s forwards;
+        }
+        .welcome-title {
+            font-family: 'Cormorant Garamond', Georgia, serif;
+            font-weight: 300;
+            font-style: italic;
+            font-size: clamp(2.8rem, 8vw, 4.5rem);
+            color: var(--text);
+            line-height: 1.1;
+            opacity: 0;
+            animation: rise 0.8s ease 0.45s forwards;
+        }
+        .welcome-rule {
+            width: 36px;
+            height: 1px;
+            background: var(--text-faint);
+            margin: 1.6rem 0;
+            opacity: 0;
+            animation: rise 0.8s ease 0.65s forwards;
+        }
+        .welcome-desc {
+            font-weight: 300;
+            font-size: 0.92rem;
+            color: var(--text-soft);
+            text-align: center;
+            line-height: 1.9;
+            max-width: 300px;
+            margin-bottom: 2.8rem;
+            opacity: 0;
+            animation: rise 0.8s ease 0.8s forwards;
+        }
+        .welcome-desc strong {
+            color: var(--text);
+            font-weight: 400;
+        }
+        .welcome-begin {
+            font-family: 'Cormorant Garamond', Georgia, serif;
+            font-size: 1.1rem;
+            font-weight: 400;
+            letter-spacing: 0.06em;
+            color: var(--text);
+            background: transparent;
+            border: 1px solid var(--text-faint);
+            padding: 0.85rem 2.8rem;
+            border-radius: 100px;
+            cursor: pointer;
+            transition: all 0.35s ease;
+            opacity: 0;
+            animation: rise 0.8s ease 1s forwards;
+        }
+        .welcome-begin:hover {
+            background: var(--text);
+            color: var(--bg);
+            border-color: var(--text);
+        }
+        .welcome-begin:active { transform: scale(0.97); }
+
+        .welcome-footer {
+            position: absolute;
+            bottom: 2.5rem;
+            font-weight: 300;
+            font-size: 0.78rem;
+            color: var(--text-faint);
+            opacity: 0;
+            animation: rise 0.8s ease 1.2s forwards;
+        }
+        .welcome-footer .hl { color: var(--heart); }
+
+        @keyframes rise {
+            from { opacity: 0; transform: translateY(14px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ── Step ── */
+        .step-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            height: 100%;
+            position: relative;
+            transition: opacity 0.4s ease;
+        }
+
+        .step-watermark {
+            position: absolute;
+            font-family: 'Cormorant Garamond', Georgia, serif;
+            font-weight: 300;
+            font-size: clamp(14rem, 32vw, 24rem);
+            line-height: 1;
+            color: var(--text);
+            opacity: 0.028;
+            user-select: none;
+            pointer-events: none;
+        }
+
+        .step-dots {
+            position: absolute;
+            top: 2.2rem;
+            display: flex;
+            gap: 0.7rem;
+            align-items: center;
+        }
+        .dot {
+            width: 5px; height: 5px;
+            border-radius: 50%;
+            background: var(--text-faint);
+            transition: all 0.5s ease;
+        }
+        .dot.active {
+            background: var(--text-soft);
+            transform: scale(1.5);
+        }
+        .dot.done {
+            background: var(--sage);
+            opacity: 0.7;
+        }
+
+        .step-label {
+            font-weight: 300;
+            font-size: 0.72rem;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+            color: var(--text-faint);
+            margin-bottom: 1.8rem;
+            z-index: 1;
+        }
+
+        .step-prompt {
+            font-family: 'Cormorant Garamond', Georgia, serif;
+            font-weight: 300;
+            font-style: italic;
+            font-size: clamp(1.25rem, 3.2vw, 1.7rem);
+            line-height: 1.75;
+            text-align: center;
+            color: var(--text);
+            max-width: 520px;
+            z-index: 1;
+            transition: opacity 0.35s ease, transform 0.35s ease;
+        }
+        .step-prompt.fading {
+            opacity: 0;
+            transform: translateY(5px);
+        }
+
+        .step-actions {
+            display: flex;
+            gap: 0.8rem;
+            align-items: center;
+            margin-top: 3rem;
+            z-index: 1;
+        }
+
+        .btn-icon {
+            width: 46px; height: 46px;
+            border-radius: 50%;
+            border: 1px solid rgba(44, 40, 37, 0.08);
+            background: rgba(255, 255, 255, 0.45);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            color: var(--text-soft);
+            padding: 0;
+        }
+        .btn-icon:hover {
+            background: rgba(255, 255, 255, 0.7);
+            border-color: rgba(44, 40, 37, 0.12);
+            transform: scale(1.06);
+        }
+        .btn-icon:active { transform: scale(0.94); }
+
+        .btn-icon svg {
+            width: 16px; height: 16px;
+            transition: transform 0.35s ease;
+        }
+
+        .btn-heart.liked {
+            color: var(--heart);
+            background: rgba(196, 135, 126, 0.12);
+            border-color: rgba(196, 135, 126, 0.18);
+        }
+        .btn-heart.pop { animation: heartPop 0.4s ease; }
+        @keyframes heartPop {
+            0% { transform: scale(1); }
+            35% { transform: scale(1.22); }
+            100% { transform: scale(1); }
+        }
+
+        .btn-shuffle.spinning svg { animation: spinHalf 0.4s ease; }
+        @keyframes spinHalf {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(180deg); }
+        }
+
+        .btn-next {
+            width: auto;
+            border-radius: 100px;
+            padding: 0 1.4rem;
+            gap: 0.35rem;
+            font-family: 'Nunito', sans-serif;
+            font-weight: 400;
+            font-size: 0.82rem;
+            letter-spacing: 0.04em;
+        }
+        .btn-next span { margin-right: 2px; }
+        .btn-next svg { width: 13px; height: 13px; }
+        .btn-next.glow {
+            animation: softGlow 2.5s ease-in-out infinite;
+            border-color: rgba(125, 155, 138, 0.3);
+        }
+        @keyframes softGlow {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(125, 155, 138, 0); }
+            50% { box-shadow: 0 0 0 10px rgba(125, 155, 138, 0.08); }
+        }
+
+        /* ── Complete ── */
+        .complete-icon {
+            width: 50px; height: 50px;
+            border-radius: 50%;
+            border: 1.5px solid var(--sage);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--sage);
+            margin-bottom: 2rem;
+            opacity: 0;
+            animation: rise 0.7s ease 0.15s forwards;
+        }
+        .complete-icon svg { width: 20px; height: 20px; }
+
+        .complete-title {
+            font-family: 'Cormorant Garamond', Georgia, serif;
+            font-weight: 300;
+            font-style: italic;
+            font-size: clamp(2rem, 5vw, 2.8rem);
+            color: var(--text);
+            margin-bottom: 0.8rem;
+            opacity: 0;
+            animation: rise 0.7s ease 0.35s forwards;
+        }
+        .complete-sub {
+            font-weight: 300;
+            font-size: 0.92rem;
+            color: var(--text-soft);
+            text-align: center;
+            max-width: 280px;
+            line-height: 1.7;
+            margin-bottom: 2.8rem;
+            opacity: 0;
+            animation: rise 0.7s ease 0.55s forwards;
+        }
+        .complete-restart {
+            font-family: 'Nunito', sans-serif;
+            font-weight: 400;
+            font-size: 0.85rem;
+            color: var(--text-soft);
+            background: transparent;
+            border: 1px solid var(--text-faint);
+            padding: 0.75rem 2rem;
+            border-radius: 100px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .complete-restart:hover {
+            background: var(--text);
+            color: var(--bg);
+            border-color: var(--text);
+        }
+        .complete-restart:active { transform: scale(0.97); }
+
+        /* ── Credit ── */
+        .credit {
+            position: fixed;
+            bottom: 1rem;
+            right: 1.2rem;
+            font-size: 0.62rem;
+            font-weight: 300;
+            color: var(--text-faint);
+            opacity: 0.45;
+            z-index: 5;
+            letter-spacing: 0.02em;
+        }
+        .credit a {
+            color: inherit;
+            text-decoration: none;
+            border-bottom: 1px solid rgba(181, 174, 166, 0.3);
+            transition: opacity 0.2s;
+        }
+        .credit a:hover { opacity: 1; }
+
+        /* ── Complete Actions ── */
+        .complete-actions {
+            display: flex;
+            gap: 0.8rem;
+            align-items: center;
+            opacity: 0;
+            animation: rise 0.7s ease 0.75s forwards;
+        }
+        .complete-edit {
+            font-family: 'Nunito', sans-serif;
+            font-weight: 300;
+            font-size: 0.85rem;
+            color: var(--text-faint);
+            background: transparent;
+            border: 1px solid rgba(44, 40, 37, 0.06);
+            padding: 0.75rem 1.5rem;
+            border-radius: 100px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .complete-edit:hover {
+            color: var(--text-soft);
+            border-color: rgba(44, 40, 37, 0.15);
+        }
+        .complete-edit:active { transform: scale(0.97); }
+
+        /* ── Editor ── */
+        #editorScreen {
+            justify-content: flex-start;
+            padding-top: 2.5rem;
+            padding-bottom: 1rem;
+        }
+        .editor {
+            width: 100%;
+            max-width: 540px;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        .editor-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 0.4rem;
+            flex-shrink: 0;
+        }
+        .editor-title {
+            font-family: 'Cormorant Garamond', Georgia, serif;
+            font-weight: 300;
+            font-style: italic;
+            font-size: 1.8rem;
+            color: var(--text);
+        }
+        .editor-close {
+            width: 36px; height: 36px;
+            border-radius: 50%;
+            border: 1px solid rgba(44, 40, 37, 0.08);
+            background: rgba(255, 255, 255, 0.4);
+            font-size: 1.2rem;
+            color: var(--text-soft);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease;
+            line-height: 1;
+        }
+        .editor-close:hover { background: rgba(255, 255, 255, 0.7); }
+        .editor-desc {
+            font-weight: 300;
+            font-size: 0.85rem;
+            color: var(--text-soft);
+            margin-bottom: 1.8rem;
+            flex-shrink: 0;
+        }
+        .editor-body {
+            flex: 1;
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
+            min-height: 0;
+            padding-right: 0.5rem;
+        }
+        .editor-body::-webkit-scrollbar { width: 3px; }
+        .editor-body::-webkit-scrollbar-track { background: transparent; }
+        .editor-body::-webkit-scrollbar-thumb {
+            background: var(--text-faint);
+            border-radius: 3px;
+        }
+        .editor-section { margin-bottom: 1.8rem; }
+        .editor-section-label {
+            font-weight: 300;
+            font-size: 0.68rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--text-faint);
+            margin-bottom: 0.7rem;
+        }
+        .editor-row {
+            display: flex;
+            gap: 0.4rem;
+            margin-bottom: 0.5rem;
+            align-items: flex-start;
+        }
+        .editor-textarea {
+            flex: 1;
+            font-family: 'Nunito', -apple-system, BlinkMacSystemFont, sans-serif;
+            font-weight: 300;
+            font-style: normal;
+            font-size: 0.85rem;
+            line-height: 1.6;
+            color: var(--text);
+            background: rgba(255, 255, 255, 0.35);
+            border: 1px solid rgba(44, 40, 37, 0.05);
+            border-radius: 8px;
+            padding: 0.55rem 0.75rem;
+            resize: none;
+            overflow: hidden;
+            transition: border-color 0.2s, background 0.2s;
+        }
+        .editor-textarea:focus {
+            outline: none;
+            border-color: rgba(125, 155, 138, 0.3);
+            background: rgba(255, 255, 255, 0.55);
+        }
+        .editor-textarea::placeholder {
+            color: var(--text-faint);
+            font-style: italic;
+        }
+        .editor-del {
+            width: 26px; height: 26px;
+            border-radius: 50%;
+            border: none;
+            background: transparent;
+            color: var(--text-faint);
+            font-size: 0.95rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+            flex-shrink: 0;
+            margin-top: 0.35rem;
+        }
+        .editor-del:hover {
+            background: rgba(196, 135, 126, 0.12);
+            color: var(--heart);
+        }
+        .editor-add-btn {
+            font-family: 'Nunito', sans-serif;
+            font-weight: 400;
+            font-size: 0.78rem;
+            color: var(--sage);
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0.25rem 0;
+            transition: opacity 0.2s;
+        }
+        .editor-add-btn:hover { opacity: 0.7; }
+        .editor-restore {
+            font-family: 'Nunito', sans-serif;
+            font-weight: 300;
+            font-size: 0.75rem;
+            color: var(--text-faint);
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0.8rem 0 0;
+            transition: color 0.2s;
+            flex-shrink: 0;
+            text-align: center;
+        }
+        .editor-restore:hover { color: var(--text-soft); }
+
+        /* ── Responsive ── */
+        @media (max-width: 600px) {
+            .screen { padding: 1.8rem; }
+            .step-prompt { max-width: 92%; }
+            .step-actions { gap: 0.6rem; }
+            .btn-icon { width: 44px; height: 44px; }
+            .orb { filter: blur(60px); }
+            .orb-1 { width: 280px; height: 280px; }
+            .orb-2 { width: 240px; height: 240px; }
+            .orb-3 { width: 200px; height: 200px; }
+            .orb-4 { width: 140px; height: 140px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Background -->
+    <div class="bg" id="bg"></div>
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+    <div class="orb orb-4"></div>
+
+    <!-- Timer -->
+    <div class="timer-bar" id="timerBar"></div>
+
+    <!-- Welcome -->
+    <div class="screen active" id="welcomeScreen">
+        <div class="welcome-greeting" id="greeting"></div>
+        <div class="welcome-title">drop anchor</div>
+        <div class="welcome-rule"></div>
+        <div class="welcome-desc">
+            A moment to ground yourself in three steps.<br>
+            <strong>Acknowledge</strong> &middot; <strong>Connect</strong> &middot; <strong>Engage</strong>
+        </div>
+        <button class="welcome-begin" id="beginBtn">begin</button>
+        <div class="welcome-footer" id="welcomeFooter"></div>
+    </div>
+
+    <!-- Step -->
+    <div class="screen" id="stepScreen">
+        <div class="step-content" id="stepContent">
+            <div class="step-watermark" id="watermark">A</div>
+            <div class="step-dots">
+                <div class="dot" id="dot0"></div>
+                <div class="dot" id="dot1"></div>
+                <div class="dot" id="dot2"></div>
+            </div>
+            <div class="step-label" id="stepLabel">acknowledge</div>
+            <div class="step-prompt" id="stepPrompt"></div>
+            <div class="step-actions">
+                <button class="btn-icon btn-shuffle" id="btnShuffle" title="Shuffle prompt">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 2v6h-6"/><path d="M3 12a9 9 0 0 1 15-6.7L21 8"/><path d="M3 22v-6h6"/><path d="M21 12a9 9 0 0 1-15 6.7L3 16"/></svg>
+                </button>
+                <button class="btn-icon btn-heart" id="btnHeart" title="Save this prompt">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+                </button>
+                <button class="btn-icon btn-next" id="btnNext">
+                    <span>next</span>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Complete -->
+    <div class="screen" id="completeScreen">
+        <div class="complete-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+        </div>
+        <div class="complete-title" id="completeTitle"></div>
+        <div class="complete-sub" id="completeSub"></div>
+        <div class="complete-actions">
+            <button class="complete-restart" id="restartBtn">once more</button>
+            <button class="complete-edit" id="editBtn">edit prompts</button>
+        </div>
+    </div>
+
+    <!-- Editor -->
+    <div class="screen" id="editorScreen">
+        <div class="editor">
+            <div class="editor-header">
+                <div class="editor-title">your prompts</div>
+                <button class="editor-close" id="editorClose" title="Close">&times;</button>
+            </div>
+            <div class="editor-desc">Add your own prompts or edit the ones here.</div>
+            <div class="editor-body" id="editorBody">
+                <div class="editor-section">
+                    <div class="editor-section-label">acknowledge</div>
+                    <div class="editor-list" id="editorListA"></div>
+                    <button class="editor-add-btn" data-step="a">+ add prompt</button>
+                </div>
+                <div class="editor-section">
+                    <div class="editor-section-label">connect</div>
+                    <div class="editor-list" id="editorListC"></div>
+                    <button class="editor-add-btn" data-step="c">+ add prompt</button>
+                </div>
+                <div class="editor-section">
+                    <div class="editor-section-label">engage</div>
+                    <div class="editor-list" id="editorListE"></div>
+                    <button class="editor-add-btn" data-step="e">+ add prompt</button>
+                </div>
+            </div>
+            <button class="editor-restore" id="editorRestore">restore defaults</button>
+        </div>
+    </div>
+
+    <div class="credit">made with <a href="https://claude.ai/code" target="_blank" rel="noopener">claude code</a></div>
+
+<script>
+// ── Prompt Data ──
+
+const DEFAULT_PROMPTS = {
+    a: [
+        "Notice what thoughts are visiting your mind right now. You don\u2019t need to chase them or push them away \u2014 just observe, like watching leaves drift along a stream.",
+        "What emotions are present in this moment? Name them silently to yourself. There\u2019s no right or wrong here \u2014 just gentle noticing.",
+        "Scan your inner landscape. What feelings live here today? You don\u2019t need to fix anything. Just notice what\u2019s already here.",
+        "What stories is your mind telling you right now? Listen without getting caught in the plot. You are the one listening \u2014 not the story.",
+        "Notice any tension, worry, or anticipation within you. Say quietly to yourself: \u201CI notice I\u2019m feeling\u2026\u201D and let the words come on their own.",
+        "What\u2019s the weather of your inner world right now? Stormy, overcast, bright, calm? Simply name it \u2014 without trying to change the forecast.",
+        "Check in with yourself the way you would with a dear friend. Ask gently: how am I doing, really? And listen to whatever answer comes.",
+        "Notice any urges pulling at you \u2014 to plan, to check your phone, to fix something. Acknowledge each one. They can wait."
+    ],
+    c: [
+        "Press your feet firmly into the floor. Feel the ground holding you, solid and steady. Slowly press your palms together and notice the warmth between your hands.",
+        "Take three slow breaths. With each exhale, let your shoulders drop a little further from your ears. Feel the gentle weight of your body settling.",
+        "Stretch your arms overhead, reaching as high as feels good. Hold for one breath, then lower them like falling snow. Notice the warmth in your muscles.",
+        "Place one hand on your chest and one on your stomach. Feel the quiet rhythm of your breathing \u2014 the rise, the fall. You are alive, right here.",
+        "Wiggle your fingers and toes, as if waking them up. Roll your shoulders in slow circles. Let your jaw unclench. Arrive fully in your body.",
+        "Run your fingertips slowly along the back of your other hand. Feel the texture, the temperature. Follow your arm up to your shoulder. You are here.",
+        "Straighten your spine gently, as if a thread is lifting the crown of your head. Take one deep, full breath into this new posture.",
+        "Clench your fists tightly for a few seconds, then slowly, slowly release. Feel the wave of softness that follows. Let it spread through you."
+    ],
+    e: [
+        "Look around and name five things you can see. Really see them \u2014 their colors, their shadows, the way light falls across them. Let each one anchor you here.",
+        "Listen carefully to the world around you. How many layers of sound can you hear? The nearest sound, the farthest, and everything in between.",
+        "What can you smell or taste right now? Even subtle things \u2014 the air itself, lingering coffee, the quiet scent of morning beginning.",
+        "Pick up the nearest object and explore it as if you\u2019ve never held it before. Its weight, temperature, texture. Give it your full, unhurried attention.",
+        "Look out the nearest window \u2014 or close your eyes and picture your favorite view. What details come forward? The quality of light, colors, movement.",
+        "Feel the air on your skin. Notice the temperature wrapping around you. What surfaces are you touching right now? The chair, your clothes, the solid ground.",
+        "Find something beautiful in your immediate surroundings \u2014 a color, a shape, a pattern of light and shadow. Let yourself simply appreciate it for a moment.",
+        "Notice three things you can hear, two things you can feel, and one thing you can see. Let each sensation bring you more fully into this moment."
+    ]
+};
+
+const STEP_LABELS = { a: 'acknowledge', c: 'connect', e: 'engage' };
+const STEPS = ['a', 'c', 'e'];
+const STEP_DURATION = 60;
+
+const COMPLETE_MESSAGES = [
+    { title: 'You are anchored.', sub: 'Carry this steadiness with you into your day.' },
+    { title: 'You are here.', sub: 'Grounded in this moment, ready for what comes next.' },
+    { title: 'Steady and present.', sub: 'Take this stillness with you \u2014 it\u2019s yours to keep.' },
+    { title: 'Anchored.', sub: 'The ground is beneath you. The day is ahead. You are ready.' }
+];
+
+// ── State ──
+
+let currentStepIndex = -1;
+let currentPrompts = { a: 0, c: 0, e: 0 };
+let favorites = { a: [], c: [], e: [] };
+let timerInterval = null;
+let timerSeconds = 0;
+let isShuffling = false;
+let prompts = null;
+
+// ── LocalStorage ──
+
+function loadFavorites() {
+    try {
+        const data = localStorage.getItem('dropanchor_favorites');
+        if (data) favorites = JSON.parse(data);
+    } catch (e) { /* ignore */ }
+}
+
+function saveFavorites() {
+    try {
+        localStorage.setItem('dropanchor_favorites', JSON.stringify(favorites));
+    } catch (e) { /* ignore */ }
+}
+
+function loadPrompts() {
+    try {
+        const data = localStorage.getItem('dropanchor_prompts');
+        if (data) {
+            const parsed = JSON.parse(data);
+            if (parsed.a && parsed.c && parsed.e) { prompts = parsed; return; }
+        }
+    } catch (e) { /* ignore */ }
+    prompts = JSON.parse(JSON.stringify(DEFAULT_PROMPTS));
+}
+
+function savePrompts() {
+    try {
+        localStorage.setItem('dropanchor_prompts', JSON.stringify(prompts));
+    } catch (e) { /* ignore */ }
+}
+
+function totalFavorites() {
+    return favorites.a.length + favorites.c.length + favorites.e.length;
+}
+
+// ── Weighted Random ──
+
+function pickPrompt(category, exclude) {
+    const favs = favorites[category] || [];
+    const count = prompts[category].length;
+    const pool = [];
+
+    for (let i = 0; i < count; i++) {
+        if (i === exclude) continue;
+        const weight = favs.includes(i) ? 3 : 1;
+        for (let w = 0; w < weight; w++) pool.push(i);
+    }
+    return pool[Math.floor(Math.random() * pool.length)];
+}
+
+// ── Greeting ──
+
+function getGreeting() {
+    const h = new Date().getHours();
+    if (h >= 5 && h < 12) return 'good morning';
+    if (h >= 12 && h < 17) return 'good afternoon';
+    return 'good evening';
+}
+
+// ── UI Updates ──
+
+function updateDots() {
+    for (let i = 0; i < 3; i++) {
+        const dot = document.getElementById('dot' + i);
+        dot.className = 'dot';
+        if (i < currentStepIndex) dot.classList.add('done');
+        else if (i === currentStepIndex) dot.classList.add('active');
+    }
+}
+
+function updateHeartUI() {
+    const step = STEPS[currentStepIndex];
+    const idx = currentPrompts[step];
+    const liked = favorites[step].includes(idx);
+    const btn = document.getElementById('btnHeart');
+    const path = btn.querySelector('path');
+
+    btn.classList.toggle('liked', liked);
+    path.setAttribute('fill', liked ? 'currentColor' : 'none');
+}
+
+function setStepContent() {
+    const step = STEPS[currentStepIndex];
+    document.getElementById('watermark').textContent = step.toUpperCase();
+    document.getElementById('stepLabel').textContent = STEP_LABELS[step];
+    document.getElementById('stepPrompt').textContent = prompts[step][currentPrompts[step]];
+
+    const isLast = currentStepIndex === 2;
+    document.querySelector('.btn-next span').textContent = isLast ? 'finish' : 'next';
+
+    updateDots();
+    updateHeartUI();
+}
+
+// ── Timer ──
+
+function startTimer() {
+    timerSeconds = 0;
+    clearInterval(timerInterval);
+
+    const bar = document.getElementById('timerBar');
+    bar.style.transition = 'none';
+    bar.style.width = '0%';
+    bar.offsetHeight; // reflow
+    bar.style.transition = '';
+    bar.classList.add('visible');
+
+    document.getElementById('btnNext').classList.remove('glow');
+
+    timerInterval = setInterval(() => {
+        timerSeconds++;
+        const pct = Math.min((timerSeconds / STEP_DURATION) * 100, 100);
+        document.getElementById('timerBar').style.width = pct + '%';
+
+        if (timerSeconds >= STEP_DURATION) {
+            clearInterval(timerInterval);
+            document.getElementById('btnNext').classList.add('glow');
+        }
+    }, 1000);
+}
+
+function stopTimer() {
+    clearInterval(timerInterval);
+    const bar = document.getElementById('timerBar');
+    bar.classList.remove('visible');
+    bar.style.width = '0%';
+}
+
+// ── Navigation ──
+
+function showScreen(id) {
+    document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+}
+
+function begin() {
+    currentStepIndex = 0;
+    STEPS.forEach(s => { currentPrompts[s] = pickPrompt(s, -1); });
+
+    showScreen('stepScreen');
+    setStepContent();
+    startTimer();
+}
+
+function nextStep() {
+    stopTimer();
+    document.getElementById('btnNext').classList.remove('glow');
+
+    if (currentStepIndex >= 2) {
+        finish();
+        return;
+    }
+
+    const content = document.getElementById('stepContent');
+    content.style.opacity = '0';
+
+    setTimeout(() => {
+        currentStepIndex++;
+        setStepContent();
+        content.style.opacity = '1';
+        startTimer();
+    }, 420);
+}
+
+function finish() {
+    stopTimer();
+    const msg = COMPLETE_MESSAGES[Math.floor(Math.random() * COMPLETE_MESSAGES.length)];
+    document.getElementById('completeTitle').textContent = msg.title;
+    document.getElementById('completeSub').textContent = msg.sub;
+    showScreen('completeScreen');
+}
+
+function restart() {
+    currentStepIndex = -1;
+    showScreen('welcomeScreen');
+    updateWelcomeFooter();
+}
+
+// ── Shuffle ──
+
+function shuffle() {
+    if (isShuffling) return;
+    isShuffling = true;
+
+    const step = STEPS[currentStepIndex];
+    const prompt = document.getElementById('stepPrompt');
+    const btn = document.getElementById('btnShuffle');
+
+    btn.classList.add('spinning');
+    prompt.classList.add('fading');
+
+    setTimeout(() => {
+        currentPrompts[step] = pickPrompt(step, currentPrompts[step]);
+        prompt.textContent = prompts[step][currentPrompts[step]];
+        prompt.classList.remove('fading');
+        updateHeartUI();
+
+        setTimeout(() => {
+            btn.classList.remove('spinning');
+            isShuffling = false;
+        }, 150);
+    }, 370);
+}
+
+// ── Favorite ──
+
+function toggleFavorite() {
+    const step = STEPS[currentStepIndex];
+    const idx = currentPrompts[step];
+    const arr = favorites[step];
+    const pos = arr.indexOf(idx);
+
+    if (pos >= 0) {
+        arr.splice(pos, 1);
+    } else {
+        arr.push(idx);
+    }
+
+    saveFavorites();
+    updateHeartUI();
+
+    const btn = document.getElementById('btnHeart');
+    btn.classList.remove('pop');
+    btn.offsetHeight;
+    btn.classList.add('pop');
+    setTimeout(() => btn.classList.remove('pop'), 450);
+}
+
+// ── Welcome Footer ──
+
+function updateWelcomeFooter() {
+    const count = totalFavorites();
+    const el = document.getElementById('welcomeFooter');
+    if (count > 0) {
+        el.innerHTML = '<span class="hl">&hearts;</span> ' + count + ' saved prompt' + (count !== 1 ? 's' : '');
+    } else {
+        el.textContent = '\u2764 prompts for about three minutes';
+    }
+}
+
+// ── Editor ──
+
+function openEditor() {
+    renderEditor();
+    showScreen('editorScreen');
+}
+
+function closeEditor() {
+    showScreen('completeScreen');
+}
+
+function renderEditor() {
+    STEPS.forEach(step => {
+        const list = document.getElementById('editorList' + step.toUpperCase());
+        list.innerHTML = '';
+        prompts[step].forEach((text, i) => {
+            const row = document.createElement('div');
+            row.className = 'editor-row';
+
+            const ta = document.createElement('textarea');
+            ta.className = 'editor-textarea';
+            ta.value = text;
+            ta.placeholder = 'Write a prompt\u2026';
+            ta.rows = 1;
+            ta.addEventListener('input', () => {
+                autoResize(ta);
+                prompts[step][i] = ta.value;
+                savePrompts();
+            });
+
+            const del = document.createElement('button');
+            del.className = 'editor-del';
+            del.innerHTML = '\u00d7';
+            del.title = 'Remove';
+            del.addEventListener('click', () => {
+                if (prompts[step].length <= 1) return;
+                prompts[step].splice(i, 1);
+                favorites[step] = favorites[step]
+                    .filter(f => f !== i)
+                    .map(f => f > i ? f - 1 : f);
+                saveFavorites();
+                savePrompts();
+                renderEditor();
+            });
+
+            row.appendChild(ta);
+            row.appendChild(del);
+            list.appendChild(row);
+            requestAnimationFrame(() => autoResize(ta));
+        });
+    });
+}
+
+function addPrompt(step) {
+    prompts[step].push('');
+    savePrompts();
+    renderEditor();
+    const list = document.getElementById('editorList' + step.toUpperCase());
+    const last = list.querySelector('.editor-row:last-child .editor-textarea');
+    if (last) last.focus();
+}
+
+function restoreDefaults() {
+    if (!confirm('Restore all prompts to defaults? Your custom prompts will be lost.')) return;
+    prompts = JSON.parse(JSON.stringify(DEFAULT_PROMPTS));
+    favorites = { a: [], c: [], e: [] };
+    savePrompts();
+    saveFavorites();
+    renderEditor();
+}
+
+function autoResize(el) {
+    el.style.height = 'auto';
+    el.style.height = el.scrollHeight + 'px';
+}
+
+// ── Init ──
+
+function init() {
+    loadFavorites();
+    loadPrompts();
+
+    document.getElementById('greeting').textContent = getGreeting();
+    updateWelcomeFooter();
+
+    document.getElementById('beginBtn').addEventListener('click', begin);
+    document.getElementById('btnShuffle').addEventListener('click', shuffle);
+    document.getElementById('btnHeart').addEventListener('click', toggleFavorite);
+    document.getElementById('btnNext').addEventListener('click', nextStep);
+    document.getElementById('restartBtn').addEventListener('click', restart);
+    document.getElementById('editBtn').addEventListener('click', openEditor);
+    document.getElementById('editorClose').addEventListener('click', closeEditor);
+    document.getElementById('editorRestore').addEventListener('click', restoreDefaults);
+    document.querySelectorAll('.editor-add-btn').forEach(btn => {
+        btn.addEventListener('click', () => addPrompt(btn.dataset.step));
+    });
+
+    // Keyboard shortcuts
+    document.addEventListener('keydown', (e) => {
+        if (document.getElementById('stepScreen').classList.contains('active')) {
+            if (e.key === 'ArrowRight' || e.key === 'Enter') nextStep();
+            if (e.key === ' ') { e.preventDefault(); shuffle(); }
+            if (e.key === 'h' || e.key === 'f') toggleFavorite();
+        }
+        if (document.getElementById('welcomeScreen').classList.contains('active')) {
+            if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); begin(); }
+        }
+        if (document.getElementById('completeScreen').classList.contains('active')) {
+            if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); restart(); }
+        }
+    });
+}
+
+init();
+</script>
+</body>
+</html>
