@@ -715,6 +715,8 @@
             .step-prompt { max-width: 92%; }
             .step-actions { gap: 0.6rem; }
             .btn-icon { width: 44px; height: 44px; }
+            .btn-next { width: 44px; padding: 0; }
+            .btn-next span { display: none; }
             .orb { filter: blur(60px); }
             .orb-1 { width: 280px; height: 280px; }
             .orb-2 { width: 240px; height: 240px; }
@@ -1080,7 +1082,6 @@ function finish() {
 function restart() {
     currentStepIndex = -1;
     showScreen('welcomeScreen');
-    updateWelcomeFooter();
 }
 
 // ── Shuffle ──
@@ -1131,19 +1132,6 @@ function toggleFavorite() {
     btn.offsetHeight;
     btn.classList.add('pop');
     setTimeout(() => btn.classList.remove('pop'), 450);
-}
-
-// ── Welcome Footer ──
-
-function updateWelcomeFooter() {
-    const count = totalFavorites();
-    const el = document.getElementById('welcomeFooter');
-    if (count > 0) {
-        el.innerHTML = '<span class="hl">&hearts;</span> ' + count + ' saved prompt' + (count !== 1 ? 's' : '');
-        el.style.display = '';
-    } else {
-        el.style.display = 'none';
-    }
 }
 
 // ── Editor ──
@@ -1229,7 +1217,6 @@ function init() {
     loadPrompts();
 
     document.getElementById('greeting').textContent = getGreeting();
-    updateWelcomeFooter();
 
     document.getElementById('beginBtn').addEventListener('click', begin);
     document.getElementById('btnShuffle').addEventListener('click', shuffle);
